@@ -9,6 +9,7 @@
             "email": "oliver.ziegler@zoutapps.de"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "stable",
+    "require": {
+    }
 }
