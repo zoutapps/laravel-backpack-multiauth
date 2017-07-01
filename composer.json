@@ -1,0 +1,14 @@
+{
+    "name": "zoutapps/laravel-backpack-multiauth",
+    "description": "This package enables using different Guards and User Models for laravel-backpack.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oliver Ziegler",
+            "email": "oliver.ziegler@zoutapps.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
