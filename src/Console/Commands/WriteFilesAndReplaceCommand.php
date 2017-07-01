@@ -62,7 +62,7 @@ abstract class WriteFilesAndReplaceCommand extends WriteFilesCommand
      */
     protected function getParsedNameInput()
     {
-        return mb_strtolower(str_singular($this->getNameInput()));
+        return str_singular($this->getNameInput());
     }
 
     /**

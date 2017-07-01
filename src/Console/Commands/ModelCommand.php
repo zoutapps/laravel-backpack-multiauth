@@ -49,15 +49,23 @@ class ModelCommand extends InstallFilesCommand
         $name = $this->getParsedNameInput();
         $lucid = $this->option('lucid');
 
-        return [
+        $ret = [
             'model' => [
                 'path' => !$lucid
-                    ? '/app/' . ucfirst($name) . '.php'
-                    : '/src/Data/' . ucfirst($name) . '.php',
+                    ? $this->includeSubDir('/app/', $name)
+                    : $this->includeSubDir('/src/Data/', $name),
                 'stub' => !$lucid
                     ? __DIR__ . '/../stubs/Model/Model.stub'
                     : __DIR__ . '/../stubs/Lucid/Model/Model.stub',
             ],
         ];
+        return $ret;
+    }
+
+    private function includeSubDir($prefix, $name)
+    {
+        $sub = ltrim(config('zoutapps.multiauth.model_path'), '/');
+        $path = rtrim($prefix . $sub . '/', '/');
+        return $path . '/' . ucfirst($name) . '.php';
     }
 }

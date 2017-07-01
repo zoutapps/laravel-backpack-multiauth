@@ -10,7 +10,7 @@ use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesCanReplac
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesGetArguments;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\ParsesServiceInput;
 
-class MultiAuthCommand extends WriteFilesAndReplaceCommand
+class CreateMultiAuthCommand extends WriteFilesAndReplaceCommand
 {
 
     use OverridesCanReplaceKeywords, OverridesGetArguments, ParsesServiceInput;
@@ -20,7 +20,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
      *
      * @var string
      */
-    protected $name = 'zoutapps:multiauth';
+    protected $name = 'zoutapps:multiauth:create';
 
     /**
      * The console command description.
@@ -58,7 +58,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         }
 
         if (!$this->option('routes')) {
-            $this->installWebRoutes();
+            $this->installWebRoutes($service, $domain, $lucid);
         }
 
         $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully installed.');
@@ -80,7 +80,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         return true;
     }
 
-    private function applySettings($name, $service, $domain, $lucid)
+    protected function applySettings($name, $service, $domain, $lucid)
     {
         Artisan::call('zoutapps:multiauth:settings', [
             'name'     => $name,
@@ -91,7 +91,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         ]);
     }
 
-    private function applyFiles($name, $service, $domain, $lucid)
+    protected function applyFiles($name, $service, $domain, $lucid)
     {
         Artisan::call('zoutapps:multiauth:files', [
             'name'     => $name,
@@ -102,7 +102,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         ]);
     }
 
-    private function applyModel($name, $lucid)
+    protected function applyModel($name, $lucid)
     {
         Artisan::call('zoutapps:multiauth:model', [
             'name'    => $name,
@@ -114,7 +114,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         $this->installPasswordResetMigration();
     }
 
-    private function applyViews($name, $service, $lucid)
+    protected function applyViews($name, $service, $lucid)
     {
         Artisan::call('zoutapps:multiauth:views', [
             'name'    => $name,
@@ -124,11 +124,8 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         ]);
     }
 
-    private function installWebRoutes()
+    protected function installWebRoutes($service, $domain, $lucid)
     {
-        $lucid = $this->option('lucid');
-        $domain = $this->option('domain');
-        $service = $this->getParsedServiceInput();
 
         if ($lucid) {
             $stub = !$domain

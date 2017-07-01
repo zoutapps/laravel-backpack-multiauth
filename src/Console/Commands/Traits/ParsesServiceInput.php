@@ -11,7 +11,7 @@ trait ParsesServiceInput
      */
     protected function getParsedServiceInput()
     {
-        return mb_strtolower(str_singular($this->getServiceInput()));
+        return str_singular($this->getServiceInput());
     }
 
     /**

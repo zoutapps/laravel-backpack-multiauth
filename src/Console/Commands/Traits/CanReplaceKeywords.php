@@ -15,7 +15,7 @@ trait CanReplaceKeywords
     {
         $name = $this->getParsedNameInput();
 
-        $name = snake_case(camel_case(str_plural($name)));
+        $name = str_plural($name);
 
         $plural = [
             '{{pluralCamel}}',
@@ -50,6 +50,12 @@ trait CanReplaceKeywords
         $template = str_replace($plural, $replacePlural, $template);
         $template = str_replace($singular, $replaceSingular, $template);
         $template = str_replace('{{Class}}', ucfirst(camel_case($name)), $template);
+        if (config('zoutapps.multiauth.model_path') != '') {
+            $sub = ltrim(rtrim(config('zoutapps.multiauth.model_path'), '/'), '/');
+            $template = str_replace('{{modelSub}}', '\\'.$sub, $template);
+        } else {
+            $template = str_replace('{{modelSub}}', '', $template);
+        }
 
         return $template;
     }

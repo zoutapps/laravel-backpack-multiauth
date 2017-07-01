@@ -11,7 +11,7 @@ trait OverridesCanReplaceKeywords
      */
     protected function getParsedNameInput()
     {
-        return mb_strtolower(str_singular($this->getNameInput()));
+        return str_singular($this->getNameInput());
     }
 
     /**
@@ -80,6 +80,12 @@ trait OverridesCanReplaceKeywords
         $template = str_replace($plural, $replacePlural, $template);
         $template = str_replace($singular, $replaceSingular, $template);
         $template = str_replace('{{Class}}', ucfirst(camel_case($name)), $template);
+        if (config('zoutapps.multiauth.model_path') != '') {
+            $sub = ltrim(rtrim(config('zoutapps.multiauth.model_path'), '/'), '/');
+            $template = str_replace('{{modelSub}}', '\\'.$sub, $template);
+        } else {
+            $template = str_replace('{{modelSub}}', '', $template);
+        }
 
         return $template;
     }
