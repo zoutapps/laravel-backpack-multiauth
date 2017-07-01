@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputOption;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\CanReplaceKeywords;
 
-class BackpackAuthCommand extends CreateMultiAuthCommand
+class BackpackAuthCommand extends MultiAuthCommand
 {
 
     use CanReplaceKeywords;
@@ -16,7 +16,7 @@ class BackpackAuthCommand extends CreateMultiAuthCommand
      *
      * @var string
      */
-    protected $name = 'zoutapps:multiauth:backpack';
+    protected $name = 'zoutapps:backpackauth:create';
 
     /**
      * The console command description.
@@ -56,7 +56,7 @@ class BackpackAuthCommand extends CreateMultiAuthCommand
 
     protected function applyFiles($name, $service, $domain, $lucid)
     {
-        Artisan::call('zoutapps:multiauth:backpack:files', [
+        Artisan::call('zoutapps:backpackauth:files', [
             'name'     => $name,
             'service'  => $service,
             '--force'  => true

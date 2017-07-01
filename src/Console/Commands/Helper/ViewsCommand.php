@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands;
+namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
 
 
 use Symfony\Component\Console\Input\InputOption;
@@ -61,15 +61,15 @@ class ViewsCommand extends WriteFilesAndReplaceCommand
         $name = $this->getParsedNameInput();
 
         $path = '/resources/views/' . $name . '/';
-        $views = __DIR__ . '/../stubs/views/';
+        $views = __DIR__ . '/../../stubs/views/';
 
         if ($this->option('lucid')) {
             $service = $this->getParsedServiceInput();
 
             $path = '/src/Services/' . studly_case($service) . '/resources/views/' . $name . '/';
             $views = !$this->option('domain')
-                ? __DIR__ . '/../stubs/Lucid/views/'
-                : __DIR__ . '/../stubs/Lucid/domain-views/';
+                ? __DIR__ . '/../../stubs/Lucid/views/'
+                : __DIR__ . '/../../stubs/Lucid/domain-views/';
         }
 
         if ($this->writeFiles($path, $this->files->allFiles($views))) {

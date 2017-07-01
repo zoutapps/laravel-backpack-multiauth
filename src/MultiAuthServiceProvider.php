@@ -4,12 +4,13 @@ namespace ZoutApps\LaravelBackpackMultiAuth;
 
 use Illuminate\Support\ServiceProvider;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\BackpackAuthCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\BackpackFilesCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\FilesCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\ModelCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\CreateMultiAuthCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\SettingsCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\ViewsCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\BackpackFilesCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\FilesCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\ModelCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\SettingsCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\ViewsCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\MultiAuthCommand;
+
 
 class MultiAuthServiceProvider extends ServiceProvider
 {
@@ -40,13 +41,15 @@ class MultiAuthServiceProvider extends ServiceProvider
     private function registerSetupCommand()
     {
         $this->commands([
-            CreateMultiAuthCommand::class,
+            MultiAuthCommand::class,
+            BackpackAuthCommand::class,
+
+            //Helper
             SettingsCommand::class,
             FilesCommand::class,
             ModelCommand::class,
             ViewsCommand::class,
-            BackpackAuthCommand::class,
-            BackpackFilesCommand::class
+            BackpackFilesCommand::class,
         ]);
     }
 }

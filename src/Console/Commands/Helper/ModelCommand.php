@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands;
+namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
 
 use Symfony\Component\Console\Input\InputOption;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;

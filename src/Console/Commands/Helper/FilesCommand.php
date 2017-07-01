@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands;
+namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
 
 use Symfony\Component\Console\Input\InputOption;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
@@ -95,35 +95,35 @@ class FilesCommand extends InstallFilesCommand
         return [
             'routes'                      => [
                 'path' => '/routes/' . $name . '.php',
-                'stub' => __DIR__ . '/../stubs/routes/routes.stub',
+                'stub' => __DIR__ . '/../../stubs/routes/routes.stub',
             ],
             'middleware'                  => [
                 'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst($name) . '.php',
-                'stub' => __DIR__ . '/../stubs/Middleware/Middleware.stub',
+                'stub' => __DIR__ . '/../../stubs/Middleware/Middleware.stub',
             ],
             'guest_middleware'            => [
                 'path' => '/app/Http/Middleware/RedirectIf' . ucfirst($name) . '.php',
-                'stub' => __DIR__ . '/../stubs/Middleware/GuestMiddleware.stub',
+                'stub' => __DIR__ . '/../../stubs/Middleware/GuestMiddleware.stub',
             ],
             'login_controller'            => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'LoginController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/LoginController.stub',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'LoginController.php',
+                'stub' => __DIR__ . '/../../stubs/Controllers/LoginController.stub',
             ],
             'register_controller'         => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'RegisterController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/RegisterController.stub',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'RegisterController.php',
+                'stub' => __DIR__ . '/../../stubs/Controllers/RegisterController.stub',
             ],
             'forgot_password_controller'  => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'ForgotPasswordController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/ForgotPasswordController.stub',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'ForgotPasswordController.php',
+                'stub' => __DIR__ . '/../../stubs/Controllers/ForgotPasswordController.stub',
             ],
             'reset_password_controller'   => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . 'Auth/' . 'ResetPasswordController.php',
-                'stub' => __DIR__ . '/../stubs/Controllers/ResetPasswordController.stub',
+                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'ResetPasswordController.php',
+                'stub' => __DIR__ . '/../../stubs/Controllers/ResetPasswordController.stub',
             ],
             'reset_password_notification' => [
                 'path' => '/app/Notifications/' . ucfirst($name) . 'ResetPassword.php',
-                'stub' => __DIR__ . '/../stubs/Notifications/ResetPassword.stub',
+                'stub' => __DIR__ . '/../../stubs/Notifications/ResetPassword.stub',
             ],
         ];
     }
@@ -184,19 +184,19 @@ class FilesCommand extends InstallFilesCommand
                 'stub' => __DIR__ . '/../stubs/Lucid/Middleware/GuestMiddleware.stub',
             ],
             'login_controller'            => [
-                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . 'Auth/LoginController.php',
+                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . '/Auth/LoginController.php',
                 'stub' => __DIR__ . '/../stubs/Lucid/Controllers/LoginController.stub',
             ],
             'register_controller'         => [
-                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . 'Auth/RegisterController.php',
+                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . '/Auth/RegisterController.php',
                 'stub' => __DIR__ . '/../stubs/Lucid/Controllers/RegisterController.stub',
             ],
             'forgot_password_controller'  => [
-                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . 'Auth/ForgotPasswordController.php',
+                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . '/Auth/ForgotPasswordController.php',
                 'stub' => __DIR__ . '/../stubs/Lucid/Controllers/ForgotPasswordController.stub',
             ],
             'reset_password_controller'   => [
-                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . 'Auth/ResetPasswordController.php',
+                'path' => '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . '/Auth/ResetPasswordController.php',
                 'stub' => __DIR__ . '/../stubs/Lucid/Controllers/ResetPasswordController.stub',
             ],
             'reset_password_notification' => [
