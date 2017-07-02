@@ -7,9 +7,11 @@ use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\BackpackAuthCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\BackpackFilesCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\FilesCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\ModelCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\RoleModelCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\SettingsCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\ViewsCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\MultiAuthCommand;
+use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\RoleAuthCommand;
 
 
 class MultiAuthServiceProvider extends ServiceProvider
@@ -43,6 +45,7 @@ class MultiAuthServiceProvider extends ServiceProvider
         $this->commands([
             MultiAuthCommand::class,
             BackpackAuthCommand::class,
+            RoleAuthCommand::class,
 
             //Helper
             SettingsCommand::class,
@@ -50,6 +53,7 @@ class MultiAuthServiceProvider extends ServiceProvider
             ModelCommand::class,
             ViewsCommand::class,
             BackpackFilesCommand::class,
+            RoleModelCommand::class
         ]);
     }
 }

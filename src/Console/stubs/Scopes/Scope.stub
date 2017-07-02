@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Scopes;
+
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+use Spatie\Permission\Models\Role;
+
+class {{singularClass}}Scope implements Scope
+{
+    public function apply(Builder $builder, Model $model)
+    {
+        $role = Role::where('name', '{{role}}')->first();
+        $builder->whereHas('roles', function ($query) use ($role) {
+            $query->where('roles.id', $role->id);
+        });
+    }
+}
