@@ -21,14 +21,14 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
      *
      * @var string
      */
-    protected $name = 'zoutapps:multiauth:create';
+    protected $name = 'zoutapps:multiauth';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Add new auth guard for multiauth in Laravel-Backpack';
+    protected $description = 'Add new auth guard for multiauth in Laravel';
 
 
     /**

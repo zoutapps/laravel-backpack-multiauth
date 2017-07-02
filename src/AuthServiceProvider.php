@@ -14,7 +14,7 @@ use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\MultiAuthCommand;
 use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\RoleAuthCommand;
 
 
-class MultiAuthServiceProvider extends ServiceProvider
+class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

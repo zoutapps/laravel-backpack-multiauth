@@ -16,7 +16,7 @@ class BackpackAuthCommand extends MultiAuthCommand
      *
      * @var string
      */
-    protected $name = 'zoutapps:backpackauth:create';
+    protected $name = 'zoutapps:backpackauth';
 
     /**
      * The console command description.
