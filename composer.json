@@ -25,6 +25,14 @@
             "ZoutApps\\LaravelBackpackAuth\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "ZoutApps\\LaravelBackpackAuth\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
     "extra": {
         "laravel": {
             "providers": [
