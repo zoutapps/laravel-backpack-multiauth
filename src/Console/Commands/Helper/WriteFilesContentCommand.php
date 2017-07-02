@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
-
 abstract class WriteFilesContentCommand extends WriteFilesCommand
 {
     /**
@@ -31,7 +30,7 @@ abstract class WriteFilesContentCommand extends WriteFilesCommand
      *
      * @return array
      */
-    abstract function getSettings();
+    abstract public function getSettings();
 
     /**
      * Execute the console command.
@@ -44,12 +43,11 @@ abstract class WriteFilesContentCommand extends WriteFilesCommand
 
         foreach ($settings as $setting) {
             $path = $setting['path'];
-            $fullPath = base_path() . $path;
+            $fullPath = base_path().$path;
 
             if ($this->putContent($fullPath, $this->compileContent($fullPath, $setting))) {
                 $this->getInfoMessage($fullPath);
             }
-
         }
 
         return true;
@@ -67,12 +65,11 @@ abstract class WriteFilesContentCommand extends WriteFilesCommand
         $originalContent = $this->files->get($path);
         $content = $this->files->get($setting['stub']);
 
-        if( ! str_contains(trim($originalContent), trim($content))) {
-
+        if (! str_contains(trim($originalContent), trim($content))) {
             if ($setting['prefix']) {
-                $stub = $content . $setting['search'];
+                $stub = $content.$setting['search'];
             } else {
-                $stub = $setting['search'] . $content;
+                $stub = $setting['search'].$content;
             }
 
             $originalContent = str_replace($setting['search'], $stub, $originalContent);

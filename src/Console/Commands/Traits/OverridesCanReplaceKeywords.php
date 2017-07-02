@@ -75,8 +75,6 @@ trait OverridesCanReplaceKeywords
             ucfirst(camel_case($service)),
         ];
 
-
-
         $template = str_replace($plural, $replacePlural, $template);
         $template = str_replace($singular, $replaceSingular, $template);
         $template = str_replace('{{Class}}', ucfirst(camel_case($name)), $template);

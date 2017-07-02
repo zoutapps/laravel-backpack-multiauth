@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Traits;
 
-
 trait CanReplaceKeywords
 {
     /**
@@ -44,8 +43,6 @@ trait CanReplaceKeywords
             str_singular(snake_case($name)),
             str_singular(ucfirst(camel_case($name))),
         ];
-
-
 
         $template = str_replace($plural, $replacePlural, $template);
         $template = str_replace($singular, $replaceSingular, $template);

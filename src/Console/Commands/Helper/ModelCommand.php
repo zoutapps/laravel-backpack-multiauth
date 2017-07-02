@@ -3,10 +3,9 @@
 namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 use Symfony\Component\Console\Input\InputOption;
-use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
-use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\ParsesServiceInput;
-
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
 
 class ModelCommand extends InstallFilesCommand
 {
@@ -34,6 +33,7 @@ class ModelCommand extends InstallFilesCommand
     public function getOptions()
     {
         $parentOptions = parent::getOptions();
+
         return array_merge($parentOptions, [
             ['lucid', false, InputOption::VALUE_NONE, 'Lucid architecture'],
         ]);
@@ -51,21 +51,23 @@ class ModelCommand extends InstallFilesCommand
 
         $ret = [
             'model' => [
-                'path' => !$lucid
+                'path' => ! $lucid
                     ? $this->includeSubDir('/app/', $name)
                     : $this->includeSubDir('/src/Data/', $name),
-                'stub' => !$lucid
-                    ? __DIR__ . '/../stubs/Model/Model.stub'
-                    : __DIR__ . '/../stubs/Lucid/Model/Model.stub',
+                'stub' => ! $lucid
+                    ? __DIR__.'/../stubs/Model/Model.stub'
+                    : __DIR__.'/../stubs/Lucid/Model/Model.stub',
             ],
         ];
+
         return $ret;
     }
 
     private function includeSubDir($prefix, $name)
     {
         $sub = ltrim(config('zoutapps.multiauth.model_path'), '/');
-        $path = rtrim($prefix . $sub . '/', '/');
-        return $path . '/' . ucfirst($name) . '.php';
+        $path = rtrim($prefix.$sub.'/', '/');
+
+        return $path.'/'.ucfirst($name).'.php';
     }
 }

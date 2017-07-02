@@ -3,10 +3,9 @@
 namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 use Symfony\Component\Console\Input\InputOption;
-use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
-use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\ParsesServiceInput;
-
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
 
 class SettingsCommand extends AppendContentCommand
 {
@@ -34,6 +33,7 @@ class SettingsCommand extends AppendContentCommand
     public function getOptions()
     {
         $parentOptions = parent::getOptions();
+
         return array_merge($parentOptions, [
             ['lucid', false, InputOption::VALUE_NONE, 'Lucid architecture'],
             ['domain', false, InputOption::VALUE_NONE, 'Install in a subdomain'],
@@ -51,7 +51,7 @@ class SettingsCommand extends AppendContentCommand
         $settings = $this->getGeneralSettings();
 
         // If the --domain was passed, but not --lucid
-        if ($this->option('domain') && !$lucid) {
+        if ($this->option('domain') && ! $lucid) {
             return array_replace_recursive($settings, $this->getDomainMapMethod());
         }
 
@@ -59,6 +59,7 @@ class SettingsCommand extends AppendContentCommand
         if ($lucid) {
             $lucidSettings = array_merge($settings, $this->getLucidSettings());
             unset($lucidSettings['map_method']);
+
             return $lucidSettings;
         }
 
@@ -77,37 +78,37 @@ class SettingsCommand extends AppendContentCommand
             'guard'        => [
                 'path'   => '/config/auth.php',
                 'search' => "'guards' => [",
-                'stub'   => __DIR__ . '/../../stubs/config/guards.stub',
+                'stub'   => __DIR__.'/../../stubs/config/guards.stub',
                 'prefix' => false,
             ],
             'provider'     => [
                 'path'   => '/config/auth.php',
                 'search' => "'providers' => [",
-                'stub'   => __DIR__ . '/../../stubs/config/providers.stub',
+                'stub'   => __DIR__.'/../../stubs/config/providers.stub',
                 'prefix' => false,
             ],
             'passwords'    => [
                 'path'   => '/config/auth.php',
                 'search' => "'passwords' => [",
-                'stub'   => __DIR__ . '/../../stubs/config/passwords.stub',
+                'stub'   => __DIR__.'/../../stubs/config/passwords.stub',
                 'prefix' => false,
             ],
             'kernel'       => [
                 'path'   => '/app/Http/Kernel.php',
                 'search' => 'protected $routeMiddleware = [',
-                'stub'   => __DIR__ . '/../../stubs/Middleware/Kernel.stub',
+                'stub'   => __DIR__.'/../../stubs/Middleware/Kernel.stub',
                 'prefix' => false,
             ],
             'map_register' => [
                 'path'   => '/app/Providers/RouteServiceProvider.php',
                 'search' => '$this->mapWebRoutes();',
-                'stub'   => __DIR__ . '/../../stubs/routes/map-register.stub',
+                'stub'   => __DIR__.'/../../stubs/routes/map-register.stub',
                 'prefix' => false,
             ],
             'map_method'   => [
                 'path'   => '/app/Providers/RouteServiceProvider.php',
-                'search' => "    /**\n" . '     * Define the "web" routes for the application.',
-                'stub'   => __DIR__ . '/../../stubs/routes/map-method.stub',
+                'search' => "    /**\n".'     * Define the "web" routes for the application.',
+                'stub'   => __DIR__.'/../../stubs/routes/map-method.stub',
                 'prefix' => true,
             ],
         ];
@@ -122,8 +123,8 @@ class SettingsCommand extends AppendContentCommand
     {
         return [
             'map_method' => [
-                'stub' => __DIR__ . '/../stubs/domain-routes/map-method.stub',
-            ]
+                'stub' => __DIR__.'/../stubs/domain-routes/map-method.stub',
+            ],
         ];
     }
 
@@ -139,24 +140,23 @@ class SettingsCommand extends AppendContentCommand
             'provider'     => [
                 'path'   => '/config/auth.php',
                 'search' => "'providers' => [",
-                'stub'   => __DIR__ . '/../stubs/Lucid/config/providers.stub',
+                'stub'   => __DIR__.'/../stubs/Lucid/config/providers.stub',
                 'prefix' => false,
             ],
             'kernel'       => [
                 'path'   => '/app/Http/Kernel.php',
                 'search' => 'protected $routeMiddleware = [',
-                'stub'   => __DIR__ . '/../stubs/Lucid/Middleware/Kernel.stub',
+                'stub'   => __DIR__.'/../stubs/Lucid/Middleware/Kernel.stub',
                 'prefix' => false,
             ],
             'map_register' => [
-                'path'   => '/src/Services/' . studly_case($service) . '/Providers/RouteServiceProvider.php',
+                'path'   => '/src/Services/'.studly_case($service).'/Providers/RouteServiceProvider.php',
                 'search' => '$this->loadRoutesFile($router, $namespace, $routesPath);',
-                'stub'   => __DIR__ . '/../stubs/Lucid/routes/map-register.stub',
+                'stub'   => __DIR__.'/../stubs/Lucid/routes/map-register.stub',
                 'prefix' => false,
             ],
         ];
 
         return $general;
     }
-
 }

@@ -2,18 +2,16 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Console\Commands;
 
-
-use Illuminate\Support\Facades\Artisan;
 use SplFileInfo;
+use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputOption;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\ParsesServiceInput;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\WriteFilesAndReplaceCommand;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
-use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
-use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\ParsesServiceInput;
 
 class MultiAuthCommand extends WriteFilesAndReplaceCommand
 {
-
     use OverridesCanReplaceKeywords, OverridesGetArguments, ParsesServiceInput;
 
     /**
@@ -30,7 +28,6 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
      */
     protected $description = 'Add new auth guard for multiauth in Laravel';
 
-
     /**
      * Execute the console command.
      *
@@ -38,7 +35,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
      */
     public function handle()
     {
-        if (!$this->checkProvidedArgumentsAndOptions()) {
+        if (! $this->checkProvidedArgumentsAndOptions()) {
             return true;
         }
 
@@ -50,34 +47,37 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         $this->applySettings($name, $service, $domain, $lucid);
         $this->applyFiles($name, $service, $domain, $lucid);
 
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->applyModel($name, $lucid);
         }
 
-        if (!$this->option('views')) {
+        if (! $this->option('views')) {
             $this->applyViews($name, $service, $lucid);
         }
 
-        if (!$this->option('routes')) {
+        if (! $this->option('routes')) {
             $this->installWebRoutes($service, $domain, $lucid);
         }
 
-        $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully installed.');
+        $this->info('Multi Auth with '.ucfirst($name).' guard successfully installed.');
 
         return true;
     }
 
     private function checkProvidedArgumentsAndOptions()
     {
-        if ($this->option('lucid') && !$this->getParsedServiceInput()) {
+        if ($this->option('lucid') && ! $this->getParsedServiceInput()) {
             $this->error('You must pass a Service name with the `--lucid` option.');
+
             return false;
         }
 
-        if (!$this->option('force')) {
+        if (! $this->option('force')) {
             $this->info('Use `-f` flag first.');
+
             return false;
         }
+
         return true;
     }
 
@@ -88,7 +88,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             'service'  => $service,
             '--domain' => $domain,
             '--lucid'  => $lucid,
-            '--force'  => true
+            '--force'  => true,
         ]);
     }
 
@@ -99,7 +99,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             'service'  => $service,
             '--domain' => $domain,
             '--lucid'  => $lucid,
-            '--force'  => true
+            '--force'  => true,
         ]);
     }
 
@@ -108,7 +108,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
         Artisan::call('zoutapps:multiauth:model', [
             'name'    => $name,
             '--lucid' => $lucid,
-            '--force' => true
+            '--force' => true,
         ]);
 
         $this->installMigration();
@@ -121,29 +121,28 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             'name'    => $name,
             'service' => $service,
             '--lucid' => $lucid,
-            '--force' => true
+            '--force' => true,
         ]);
     }
 
     protected function installWebRoutes($service, $domain, $lucid)
     {
-
         if ($lucid) {
-            $stub = !$domain
-                ? __DIR__ . '/../stubs/Lucid/routes/web.stub'
-                : __DIR__ . '/../stubs/Lucid/domain-routes/web.stub';
+            $stub = ! $domain
+                ? __DIR__.'/../stubs/Lucid/routes/web.stub'
+                : __DIR__.'/../stubs/Lucid/domain-routes/web.stub';
 
-            $lucidPath = base_path() . '/src/Services/' . studly_case($service) . '/Http/routes.php';
-            $lucidStub = !$domain
-                ? __DIR__ . '/../stubs/Lucid/routes/map-method.stub'
-                : __DIR__ . '/../stubs/Lucid/domain-routes/map-method.stub';
+            $lucidPath = base_path().'/src/Services/'.studly_case($service).'/Http/routes.php';
+            $lucidStub = ! $domain
+                ? __DIR__.'/../stubs/Lucid/routes/map-method.stub'
+                : __DIR__.'/../stubs/Lucid/domain-routes/map-method.stub';
 
-            if (!$this->contentExists($lucidPath, $lucidStub)) {
+            if (! $this->contentExists($lucidPath, $lucidStub)) {
                 $lucidFile = new SplFileInfo($lucidStub);
                 $this->appendFile($lucidPath, $lucidFile);
             }
 
-            if (!$this->contentExists($lucidPath, $stub)) {
+            if (! $this->contentExists($lucidPath, $stub)) {
                 $file = new SplFileInfo($stub);
                 $this->appendFile($lucidPath, $file);
 
@@ -153,13 +152,13 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             return false;
         }
 
-        $path = base_path() . '/routes/web.php';
-        $stub = __DIR__ . '/../stubs/routes/web.stub';
+        $path = base_path().'/routes/web.php';
+        $stub = __DIR__.'/../stubs/routes/web.stub';
         if ($domain) {
-            $stub = __DIR__ . '/../stubs/domain-routes/web.stub';
+            $stub = __DIR__.'/../stubs/domain-routes/web.stub';
         }
 
-        if (!$this->contentExists($path, $stub)) {
+        if (! $this->contentExists($path, $stub)) {
             $file = new SplFileInfo($stub);
             $this->appendFile($path, $file);
 
@@ -178,9 +177,9 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
     {
         $name = $this->getParsedNameInput();
 
-        $migrationDir = base_path() . '/database/migrations/';
-        $migrationName = 'create_' . str_plural(snake_case($name)) . '_table.php';
-        $migrationStub = new SplFileInfo(__DIR__ . '/../stubs/Model/migration.stub');
+        $migrationDir = base_path().'/database/migrations/';
+        $migrationName = 'create_'.str_plural(snake_case($name)).'_table.php';
+        $migrationStub = new SplFileInfo(__DIR__.'/../stubs/Model/migration.stub');
 
         $files = $this->files->allFiles($migrationDir);
 
@@ -192,7 +191,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             }
         }
 
-        $path = $migrationDir . date('Y_m_d_His') . '_' . $migrationName;
+        $path = $migrationDir.date('Y_m_d_His').'_'.$migrationName;
         $this->putFile($path, $migrationStub);
 
         return true;
@@ -207,9 +206,9 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
     {
         $name = $this->getParsedNameInput();
 
-        $migrationDir = base_path() . '/database/migrations/';
-        $migrationName = 'create_' . str_singular(snake_case($name)) . '_password_resets_table.php';
-        $migrationStub = new SplFileInfo(__DIR__ . '/../stubs/Model/PasswordResetMigration.stub');
+        $migrationDir = base_path().'/database/migrations/';
+        $migrationName = 'create_'.str_singular(snake_case($name)).'_password_resets_table.php';
+        $migrationStub = new SplFileInfo(__DIR__.'/../stubs/Model/PasswordResetMigration.stub');
 
         $files = $this->files->allFiles($migrationDir);
 
@@ -221,7 +220,7 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             }
         }
 
-        $path = $migrationDir . date('Y_m_d_His', strtotime('+1 second')) . '_' . $migrationName;
+        $path = $migrationDir.date('Y_m_d_His', strtotime('+1 second')).'_'.$migrationName;
         $this->putFile($path, $migrationStub);
 
         return true;
@@ -243,5 +242,4 @@ class MultiAuthCommand extends WriteFilesAndReplaceCommand
             ['routes', null, InputOption::VALUE_NONE, 'Exclude routes'],
         ];
     }
-
 }
