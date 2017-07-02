@@ -1,15 +1,15 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands;
 
 
 use Illuminate\Support\Facades\Artisan;
 use SplFileInfo;
 use Symfony\Component\Console\Input\InputOption;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\WriteFilesAndReplaceCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesGetArguments;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\ParsesServiceInput;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\WriteFilesAndReplaceCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesGetArguments;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\ParsesServiceInput;
 
 class MultiAuthCommand extends WriteFilesAndReplaceCommand
 {

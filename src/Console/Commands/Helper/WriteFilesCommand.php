@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

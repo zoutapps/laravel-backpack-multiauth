@@ -1,10 +1,10 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands;
 
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputOption;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\CanReplaceKeywords;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\CanReplaceKeywords;
 
 class BackpackAuthCommand extends MultiAuthCommand
 {

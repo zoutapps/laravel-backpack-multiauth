@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Traits;
 
 trait ParsesServiceInput
 {

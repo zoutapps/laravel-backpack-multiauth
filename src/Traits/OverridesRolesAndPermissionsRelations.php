@@ -6,7 +6,7 @@
  * Time: 02:13
  */
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Traits;
+namespace ZoutApps\LaravelBackpackAuth\Traits;
 
 /**
  * Trait OverridesRolesAndPermissionsRelations

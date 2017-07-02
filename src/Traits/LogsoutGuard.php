@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Traits;
+namespace ZoutApps\LaravelBackpackAuth\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

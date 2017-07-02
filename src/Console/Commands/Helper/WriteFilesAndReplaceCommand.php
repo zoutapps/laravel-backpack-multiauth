@@ -1,9 +1,9 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 use Symfony\Component\Console\Input\InputArgument;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\CanReplaceKeywords;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\CanReplaceKeywords;
 
 
 abstract class WriteFilesAndReplaceCommand extends WriteFilesCommand

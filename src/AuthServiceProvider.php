@@ -1,17 +1,17 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth;
+namespace ZoutApps\LaravelBackpackAuth;
 
 use Illuminate\Support\ServiceProvider;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\BackpackAuthCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\BackpackFilesCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\FilesCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\ModelCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\RoleModelCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\SettingsCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper\ViewsCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\MultiAuthCommand;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\RoleAuthCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\BackpackAuthCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\BackpackFilesCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\FilesCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\ModelCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\RoleModelCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\SettingsCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Helper\ViewsCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\MultiAuthCommand;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\RoleAuthCommand;
 
 
 class AuthServiceProvider extends ServiceProvider

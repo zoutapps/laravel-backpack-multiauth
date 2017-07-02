@@ -1,9 +1,9 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 use Symfony\Component\Console\Input\InputOption;
-use ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
+use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
 
 
 class BackpackFilesCommand extends FilesCommand

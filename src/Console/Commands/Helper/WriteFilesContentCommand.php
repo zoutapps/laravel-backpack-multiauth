@@ -1,6 +1,6 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackMultiAuth\Console\Commands\Helper;
+namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 
 abstract class WriteFilesContentCommand extends WriteFilesCommand
