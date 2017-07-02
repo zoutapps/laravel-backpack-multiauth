@@ -2,15 +2,14 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Console\Commands;
 
-use Illuminate\Support\Facades\Artisan;
 use SplFileInfo;
-use Symfony\Component\Console\Input\InputArgument;
+use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Input\InputArgument;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\CanReplaceKeywords;
 
 class RoleAuthCommand extends MultiAuthCommand
 {
-
     use CanReplaceKeywords;
 
     /**
@@ -27,11 +26,11 @@ class RoleAuthCommand extends MultiAuthCommand
      */
     protected $description = 'Add new User subclass model with global role scope to mimic MultiAuth with Roles from Spatie\\Permission';
 
-
     public function handle()
     {
-        if (!$this->option('force')) {
+        if (! $this->option('force')) {
             $this->info('Use `-f` flag first.');
+
             return true;
         }
 
@@ -42,19 +41,19 @@ class RoleAuthCommand extends MultiAuthCommand
         $this->applyFiles($name, null, $domain, false);
         $this->applyScope($name);
 
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->applyModel($name, false);
         }
 
-        if (!$this->option('views')) {
+        if (! $this->option('views')) {
             $this->applyViews($name, null, false);
         }
 
-        if (!$this->option('routes')) {
+        if (! $this->option('routes')) {
             $this->installWebRoutes(null, $domain, false);
         }
 
-        $this->info('Role Auth with ' . ucfirst($name) . ' guard successfully applied');
+        $this->info('Role Auth with '.ucfirst($name).' guard successfully applied');
     }
 
     public function getArguments()
@@ -71,18 +70,18 @@ class RoleAuthCommand extends MultiAuthCommand
         Artisan::call('zoutapps:multiauth:files', [
             'name'    => $name,
             'service' => $service,
-            '--force' => true
+            '--force' => true,
         ]);
     }
 
     protected function applyScope($name)
     {
         $file = [
-            'path' => '/app/Scopes/' . ucfirst($name) . 'Scope.php',
-            'stub' => __DIR__ . '/../stubs/Scopes/Scope.stub'
+            'path' => '/app/Scopes/'.ucfirst($name).'Scope.php',
+            'stub' => __DIR__.'/../stubs/Scopes/Scope.stub',
         ];
 
-        $fullPath = base_path() . $file['path'];
+        $fullPath = base_path().$file['path'];
         $fileObject = new SplFileInfo($file['stub']);
 
         if ($this->putFile($fullPath, $fileObject)) {
@@ -95,7 +94,7 @@ class RoleAuthCommand extends MultiAuthCommand
         Artisan::call('zoutapps:roleauth:model', [
             'name'    => $name,
             '--lucid' => $lucid,
-            '--force' => true
+            '--force' => true,
         ]);
     }
 
@@ -103,6 +102,7 @@ class RoleAuthCommand extends MultiAuthCommand
     {
         $role = trim($this->argument('role'));
         $content = parent::compile($content);
+
         return str_replace('{{role}}', $role, $content);
     }
 

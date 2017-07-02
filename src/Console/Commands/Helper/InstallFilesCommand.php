@@ -4,7 +4,6 @@ namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 
 use SplFileInfo;
 
-
 abstract class InstallFilesCommand extends WriteFilesAndReplaceCommand
 {
     /**
@@ -33,7 +32,7 @@ abstract class InstallFilesCommand extends WriteFilesAndReplaceCommand
      *
      * @return array
      */
-    abstract function getFiles();
+    abstract public function getFiles();
 
     /**
      * Execute the console command.
@@ -46,7 +45,7 @@ abstract class InstallFilesCommand extends WriteFilesAndReplaceCommand
 
         foreach ($files as $file) {
             $path = $file['path'];
-            $fullPath = base_path() . $path;
+            $fullPath = base_path().$path;
 
             $fileObject = new SplFileInfo($file['stub']);
 

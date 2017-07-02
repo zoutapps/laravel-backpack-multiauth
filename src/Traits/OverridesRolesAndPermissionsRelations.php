@@ -3,20 +3,16 @@
  * Created by PhpStorm.
  * User: Oli
  * Date: 02.07.17
- * Time: 02:13
+ * Time: 02:13.
  */
 
 namespace ZoutApps\LaravelBackpackAuth\Traits;
 
 /**
- * Trait OverridesRolesAndPermissionsRelations
- * @package ZoutApps\LaravelBackpackMultiAuth\Traits
- *
- * Overrides relations to prevent eloquent automatically assuming the foreign key name
+ * Trait OverridesRolesAndPermissionsRelations.
  */
 trait OverridesRolesAndPermissionsRelations
 {
-
     /**
      * A user may have multiple roles.
      *
@@ -32,6 +28,7 @@ trait OverridesRolesAndPermissionsRelations
             'user'
         );
     }
+
     /**
      * A user may have multiple direct permissions.
      *

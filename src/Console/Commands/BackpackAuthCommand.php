@@ -8,7 +8,6 @@ use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\CanReplaceKeywords;
 
 class BackpackAuthCommand extends MultiAuthCommand
 {
-
     use CanReplaceKeywords;
 
     /**
@@ -25,11 +24,11 @@ class BackpackAuthCommand extends MultiAuthCommand
      */
     protected $description = 'Add new guard for Laravel-Backpack admin panel login';
 
-
     public function handle()
     {
-        if (!$this->option('force')) {
+        if (! $this->option('force')) {
             $this->info('Use `-f` flag first.');
+
             return true;
         }
 
@@ -38,17 +37,17 @@ class BackpackAuthCommand extends MultiAuthCommand
 
         $this->applySettings($name, null, $domain, false);
         $this->applyFiles($name, null, $domain, false);
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->applyModel($name, false);
         }
         $this->installWebRoutes(null, $domain, false);
 
-        $this->info('Multi Auth with ' . ucfirst($name) . ' guard successfully applied to backpack.');
+        $this->info('Multi Auth with '.ucfirst($name).' guard successfully applied to backpack.');
         $this->info('You must apply some changes to your backpack config:');
         $this->info('* set your "user_model_fqn" to the created model ');
         $this->info('* disable "setup_auth_routes"');
         $this->info('* disable "setup_dashboard_routes"');
-        $this->info('* set "route_prefix" to ' . str_singular(str_slug($name)) );
+        $this->info('* set "route_prefix" to '.str_singular(str_slug($name)));
 
         // TODO: Apply to all possible backpack routes
         // permissionmanager, logmanager, settings etc.
@@ -59,7 +58,7 @@ class BackpackAuthCommand extends MultiAuthCommand
         Artisan::call('zoutapps:backpackauth:files', [
             'name'     => $name,
             'service'  => $service,
-            '--force'  => true
+            '--force'  => true,
         ]);
     }
 

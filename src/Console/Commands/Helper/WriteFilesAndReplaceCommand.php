@@ -5,7 +5,6 @@ namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 use Symfony\Component\Console\Input\InputArgument;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\CanReplaceKeywords;
 
-
 abstract class WriteFilesAndReplaceCommand extends WriteFilesCommand
 {
     use CanReplaceKeywords;
@@ -45,14 +44,14 @@ abstract class WriteFilesAndReplaceCommand extends WriteFilesCommand
     }
 
     /**
-     * Get info message output
+     * Get info message output.
      *
      * @param $filePath
      * @return mixed
      */
     protected function getInfoMessage($filePath)
     {
-        $this->info('Content changed in: ' . $filePath);
+        $this->info('Content changed in: '.$filePath);
     }
 
     /**
@@ -88,7 +87,7 @@ abstract class WriteFilesAndReplaceCommand extends WriteFilesCommand
     }
 
     /**
-     * Check if stub's content exists in given file (path)
+     * Check if stub's content exists in given file (path).
      *
      * @param $path
      * @param $stub
@@ -99,7 +98,7 @@ abstract class WriteFilesAndReplaceCommand extends WriteFilesCommand
         $originalContent = $this->files->get($path);
         $content = $this->replaceKeywords($this->files->get($stub));
 
-        if(str_contains(trim($originalContent), trim($content))) {
+        if (str_contains(trim($originalContent), trim($content))) {
             return true;
         }
 

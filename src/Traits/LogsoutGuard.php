@@ -26,7 +26,7 @@ trait LogsoutGuard
             }
         }
 
-        if ( ! $activeGuards) {
+        if (! $activeGuards) {
             $request->session()->flush();
             $request->session()->regenerate();
         }
@@ -40,7 +40,8 @@ trait LogsoutGuard
      *
      * @return string
      */
-    public function logoutToPath() {
+    public function logoutToPath()
+    {
         return '/';
     }
 
@@ -53,8 +54,9 @@ trait LogsoutGuard
      */
     public function isActiveGuard($request, $guard)
     {
-        $name = Auth::guard($guard) ->getName();
-        return ($this->sessionHas($request, $name) && $this->sessionGet($request, $name) === $this->getAuthIdentifier($guard));
+        $name = Auth::guard($guard)->getName();
+
+        return $this->sessionHas($request, $name) && $this->sessionGet($request, $name) === $this->getAuthIdentifier($guard);
     }
 
     /**

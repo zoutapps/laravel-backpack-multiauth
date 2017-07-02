@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputOption;
 
-
 abstract class WriteFilesCommand extends Command
 {
     /**
@@ -48,7 +47,7 @@ abstract class WriteFilesCommand extends Command
      *
      * @return bool|null
      */
-    abstract function handle();
+    abstract public function handle();
 
     /**
      * Install files method.
@@ -58,17 +57,16 @@ abstract class WriteFilesCommand extends Command
      */
     protected function writeFiles($path, $files)
     {
-        foreach($files as $file)
-        {
+        foreach ($files as $file) {
             $this->writeFile($path, $file);
         }
     }
 
     protected function writeFile($path, $file)
     {
-        $filePath = base_path(). $path . $file->getRelativePath() . '/' . $this->parseFilename($file);
+        $filePath = base_path().$path.$file->getRelativePath().'/'.$this->parseFilename($file);
 
-        if($this->putFile($filePath, $file)) {
+        if ($this->putFile($filePath, $file)) {
             $this->getInfoMessage($filePath);
         }
     }
@@ -79,7 +77,7 @@ abstract class WriteFilesCommand extends Command
      */
     protected function parseFilename($file)
     {
-        return $this->getFileName($file) . $this->getExtension($file);
+        return $this->getFileName($file).$this->getExtension($file);
     }
 
     /**
@@ -112,7 +110,7 @@ abstract class WriteFilesCommand extends Command
     }
 
     /**
-     * Put given file in path
+     * Put given file in path.
      *
      * @param $path
      * @param $file
@@ -121,8 +119,8 @@ abstract class WriteFilesCommand extends Command
      */
     protected function putFile($path, $file)
     {
-        if($this->alreadyExists($path) && !$this->option('force')) {
-            $this->error($path . ' already exists!');
+        if ($this->alreadyExists($path) && ! $this->option('force')) {
+            $this->error($path.' already exists!');
 
             return false;
         }
@@ -135,7 +133,7 @@ abstract class WriteFilesCommand extends Command
     }
 
     /**
-     * Append given file in path
+     * Append given file in path.
      *
      * @param $path
      * @param $file
@@ -144,8 +142,8 @@ abstract class WriteFilesCommand extends Command
      */
     protected function appendFile($path, $file)
     {
-        if($this->alreadyExists($path) && !$this->option('force')) {
-            $this->error($path . ' already exists!');
+        if ($this->alreadyExists($path) && ! $this->option('force')) {
+            $this->error($path.' already exists!');
 
             return false;
         }
@@ -158,7 +156,7 @@ abstract class WriteFilesCommand extends Command
     }
 
     /**
-     * Put given content in path
+     * Put given content in path.
      *
      * @param $path
      * @param $content
@@ -167,8 +165,8 @@ abstract class WriteFilesCommand extends Command
      */
     protected function putContent($path, $content)
     {
-        if($this->alreadyExists($path) && !$this->option('force')) {
-            $this->error($path . ' already exists!');
+        if ($this->alreadyExists($path) && ! $this->option('force')) {
+            $this->error($path.' already exists!');
 
             return false;
         }
@@ -182,7 +180,7 @@ abstract class WriteFilesCommand extends Command
 
     protected function getInfoMessage($filePath)
     {
-        $this->info('Copied: ' . $filePath);
+        $this->info('Copied: '.$filePath);
     }
 
     /**

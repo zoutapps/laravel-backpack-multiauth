@@ -5,7 +5,6 @@ namespace ZoutApps\LaravelBackpackAuth\Console\Commands\Helper;
 use Symfony\Component\Console\Input\InputOption;
 use ZoutApps\LaravelBackpackAuth\Console\Commands\Traits\OverridesCanReplaceKeywords;
 
-
 class BackpackFilesCommand extends FilesCommand
 {
     use OverridesCanReplaceKeywords;
@@ -59,40 +58,40 @@ class BackpackFilesCommand extends FilesCommand
 
         return [
             'routes'                      => [
-                'path' => '/routes/' . mb_strtolower($name) . '.php',
-                'stub' => __DIR__ . '/../../stubs/routes/backpackroutes.stub',
+                'path' => '/routes/'.mb_strtolower($name).'.php',
+                'stub' => __DIR__.'/../../stubs/routes/backpackroutes.stub',
             ],
             'middleware'                  => [
-                'path' => '/app/Http/Middleware/RedirectIfNot' . ucfirst($name) . '.php',
-                'stub' => __DIR__ . '/../../stubs/Middleware/Middleware.stub',
+                'path' => '/app/Http/Middleware/RedirectIfNot'.ucfirst($name).'.php',
+                'stub' => __DIR__.'/../../stubs/Middleware/Middleware.stub',
             ],
             'guest_middleware'            => [
-                'path' => '/app/Http/Middleware/RedirectIf' . ucfirst($name) . '.php',
-                'stub' => __DIR__ . '/../../stubs/Middleware/GuestMiddleware.stub',
+                'path' => '/app/Http/Middleware/RedirectIf'.ucfirst($name).'.php',
+                'stub' => __DIR__.'/../../stubs/Middleware/GuestMiddleware.stub',
             ],
             'login_controller'            => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'LoginController.php',
-                'stub' => __DIR__ . '/../../stubs/Controllers/BackpackLoginController.stub',
+                'path' => '/app/Http/Controllers/'.ucfirst($name).'/Auth/'.'LoginController.php',
+                'stub' => __DIR__.'/../../stubs/Controllers/BackpackLoginController.stub',
             ],
             'register_controller'         => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'RegisterController.php',
-                'stub' => __DIR__ . '/../../stubs/Controllers/BackpackRegisterController.stub',
+                'path' => '/app/Http/Controllers/'.ucfirst($name).'/Auth/'.'RegisterController.php',
+                'stub' => __DIR__.'/../../stubs/Controllers/BackpackRegisterController.stub',
             ],
             'forgot_password_controller'  => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'ForgotPasswordController.php',
-                'stub' => __DIR__ . '/../../stubs/Controllers/BackpackForgotPasswordController.stub',
+                'path' => '/app/Http/Controllers/'.ucfirst($name).'/Auth/'.'ForgotPasswordController.php',
+                'stub' => __DIR__.'/../../stubs/Controllers/BackpackForgotPasswordController.stub',
             ],
             'reset_password_controller'   => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/Auth/' . 'ResetPasswordController.php',
-                'stub' => __DIR__ . '/../../stubs/Controllers/BackpackResetPasswordController.stub',
+                'path' => '/app/Http/Controllers/'.ucfirst($name).'/Auth/'.'ResetPasswordController.php',
+                'stub' => __DIR__.'/../../stubs/Controllers/BackpackResetPasswordController.stub',
             ],
             'admin_controller'            => [
-                'path' => '/app/Http/Controllers/' . ucfirst($name) . '/AdminController.php',
-                'stub' => __DIR__ . '/../../stubs/Controllers/BackpackAdminController.stub',
+                'path' => '/app/Http/Controllers/'.ucfirst($name).'/AdminController.php',
+                'stub' => __DIR__.'/../../stubs/Controllers/BackpackAdminController.stub',
             ],
             'reset_password_notification' => [
-                'path' => '/app/Notifications/' . ucfirst($name) . 'ResetPassword.php',
-                'stub' => __DIR__ . '/../../stubs/Notifications/ResetPassword.stub',
+                'path' => '/app/Notifications/'.ucfirst($name).'ResetPassword.php',
+                'stub' => __DIR__.'/../../stubs/Notifications/ResetPassword.stub',
             ],
         ];
     }
