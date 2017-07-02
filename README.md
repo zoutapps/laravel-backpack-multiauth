@@ -40,7 +40,21 @@ The package installs:
 
 ### Step 1: Install Through Composer
 
-`coming soon`
+`packagist support coming soon`
+
+**In the meantime**:
+Add a custom repository to your composer.json
+
+```
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/zoutapps/laravel-backpack-multiauth"
+    }
+],
+```
+
+Add this to your requires: `"zoutapps/laravel-backpack-multiauth": "dev-master"` and then run `composer update` 
 
 ### Step 2: Add the Service Provider
 
@@ -50,7 +64,7 @@ You'll only want to use this package for local development, so you don't want to
 public function register()
 {
 	if ($this->app->environment() == 'local') {
-		$this->app->register('ZoutApps\LaravelBackpackMultiAuth\AuthServiceProvider');
+		$this->app->register(ZoutApps\LaravelBackpackAuth\AuthServiceProvider::class);
 	}
 }
 ```
