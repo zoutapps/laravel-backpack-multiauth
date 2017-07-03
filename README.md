@@ -88,8 +88,9 @@ php artisan zoutapps:backpackauth {singular_lowercasae_name_of_guard} -f
 php artisan zoutapps:backpackauth administrator -f
 ```
 
-**Notice:**
-If you don't provide `-f` flag, it will not work. It is a protection against accidental activation.
+**Notice:**  
+If you don't provide `-f` flag, it will not work. It is a protection against accidental activation.  
+In the future there will be guided setup when omitting the `-f` flag.
 
 **Alternative:**
 If you want to install Multi-Auth files in a subdomain you must pass the option `--domain`.
@@ -151,11 +152,11 @@ public function logoutToPath() {
 }
 ```
 
-##Changelog
+## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for mor information what was changed.
 
-##Credits
+## Credits
 
 - [Zout Apps](http://zoutapps.de)
 - [Oliver Ziegler](https://github.com/OliverZiegler)
