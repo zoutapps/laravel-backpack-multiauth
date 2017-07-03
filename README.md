@@ -2,7 +2,9 @@
 
 [![StyleCI](https://styleci.io/repos/95968915/shield)](https://styleci.io/repos/95968915)
 [![Build Status](https://travis-ci.org/zoutapps/laravel-backpack-multiauth.svg?branch=master)](https://travis-ci.org/zoutapps/laravel-backpack-multiauth)
-
+[![Latest Stable Version](https://poser.pugx.org/zoutapps/laravel-backpack-multiauth/v/stable)](https://packagist.org/packages/zoutapps/laravel-backpack-multiauth)
+[![Total Downloads](https://poser.pugx.org/zoutapps/laravel-backpack-multiauth/downloads)](https://packagist.org/packages/zoutapps/laravel-backpack-multiauth)
+[![License](https://poser.pugx.org/zoutapps/laravel-backpack-multiauth/license)](https://packagist.org/packages/zoutapps/laravel-backpack-multiauth)
 
 Easy out of the box multi-auth in Laravel and in [backpackforlaravel.com](http://backpackforlaravel.com).
 
@@ -40,19 +42,7 @@ The package installs:
 
 ### Step 1: Install Through Composer
 
-`packagist support coming soon`
-
-**In the meantime**:
-Add a custom repository to your composer.json
-
-```
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/zoutapps/laravel-backpack-multiauth"
-    }
-],
-```
+`composer require zoutapps/laravel-backpack-multiauth --dev`
 
 Add this to your requires: `"zoutapps/laravel-backpack-multiauth": "dev-master"` and then run `composer update` 
 
