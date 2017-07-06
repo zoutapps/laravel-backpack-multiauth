@@ -44,8 +44,6 @@ The package installs:
 
 `composer require zoutapps/laravel-backpack-multiauth --dev`
 
-Add this to your requires: `"zoutapps/laravel-backpack-multiauth": "dev-master"` and then run `composer update` 
-
 ### Step 2: Add the Service Provider
 
 You'll only want to use this package for local development, so you don't want to update the production `providers` array in `config/app.php`. Instead, add the provider in `app/Providers/AppServiceProvider.php`, like so:
