@@ -50,10 +50,10 @@ trait OverridesCanReplaceKeywords
             '{{singularSnake}}',
             '{{singularClass}}',
 
-            '{{singularServiceCamel}}',
-            '{{singularServiceSlug}}',
-            '{{singularServiceSnake}}',
-            '{{singularServiceClass}}',
+            '{{singularCamelService}}',
+            '{{singularSlugService}}',
+            '{{singularSnakeService}}',
+            '{{singularClassService}}',
         ];
 
         $replacePlural = [

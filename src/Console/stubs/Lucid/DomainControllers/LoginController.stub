@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\{{singularServiceClass}}\Http\Controllers\{{singularClass}}Auth;
+namespace App\Services\{{singularClassService}}\Http\Controllers\{{singularClass}}Auth;
 
 use Lucid\Foundation\Http\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -48,7 +48,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('{{singularServiceSlug}}::{{singularSlug}}.auth.login');
+        return view('{{singularSlugService}}::{{singularSlug}}.auth.login');
     }
 
     /**

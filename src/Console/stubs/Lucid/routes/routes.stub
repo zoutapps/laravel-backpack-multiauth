@@ -7,6 +7,6 @@ Route::get('/home', function () {
 
     //dd($users);
 
-    return view('{{singularServiceSlug}}::{{singularSlug}}.home');
+    return view('{{singularSlugService}}::{{singularSlug}}.home');
 })->name('home');
 

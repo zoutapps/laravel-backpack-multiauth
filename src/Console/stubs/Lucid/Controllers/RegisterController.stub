@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\{{singularServiceClass}}\Http\Controllers\{{singularClass}}Auth;
+namespace App\Services\{{singularClassService}}\Http\Controllers\{{singularClass}}Auth;
 
 
 use App\Data\{{singularClass}};
@@ -78,7 +78,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('{{singularServiceSlug}}::{{singularSlug}}.auth.register');
+        return view('{{singularSlugService}}::{{singularSlug}}.auth.register');
     }
 
     /**
