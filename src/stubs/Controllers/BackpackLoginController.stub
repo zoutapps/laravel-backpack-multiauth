@@ -1,0 +1,78 @@
+<?php
+
+namespace App\Http\Controllers\{{singularClass}}\Auth;
+
+use Backpack\Base\app\Http\Controllers\Auth\LoginController as OriginalLoginController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use ZoutApps\LaravelBackpackMultiAuth\Traits\LogsoutGuard;
+
+class LoginController extends OriginalLoginController
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use LogsoutGuard {
+        logout as guardedLogout;
+    }
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('{{singularSnake}}.guest', ['except' => 'logout']);
+
+        // ----------------------------------
+        // Use the admin prefix in all routes
+
+        // If not logged in redirect here.
+        $this->loginPath = property_exists($this, 'loginPath') ? $this->loginPath
+            : config('backpack.base.route_prefix', 'admin').'/login';
+
+        // Redirect here after successful login.
+        $this->redirectTo = property_exists($this, 'redirectTo') ? $this->redirectTo
+            : config('backpack.base.route_prefix', 'admin').'/dashboard';
+
+        // Redirect here after logout.
+        $this->redirectAfterLogout = property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout
+            : config('backpack.base.route_prefix', 'admin');
+        // ----------------------------------
+    }
+
+    /**
+     * Log the user out and redirect him to specific location.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        // Do the guarded logout procedure
+        $this->guardedLogout($request);
+
+        // And redirect to custom location
+        return redirect($this->redirectAfterLogout);
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+     protected function guard()
+     {
+        return Auth::guard('{{singularSnake}}');
+     }
+}

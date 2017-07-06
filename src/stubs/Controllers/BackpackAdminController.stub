@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Controllers\{{singularClass}};
+
+use Backpack\Base\app\Http\Controllers\AdminController as OriginalController;
+
+class AdminController extends OriginalController
+{
+    protected $data = []; // the information we send to the view
+
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('{{singularSnake}}');
+    }
+}

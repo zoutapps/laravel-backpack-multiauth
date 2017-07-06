@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Data{{modelSub}};
+
+use App\Scopes\{{singularClass}}Scope;
+use ZoutApps\LaravelBackpackMultiAuth\Traits\OverridesRolesAndPermissionsRelations;
+
+class {{singularClass}} extends User
+{
+    use OverridesRolesAndPermissionsRelations;
+
+    protected $table = 'users';
+
+    public static function boot()
+    {
+        static::addGlobalScope(new {{singularClass}}Scope());
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('laravel-permission.table_names.users');
+        parent::__construct($attributes);
+    }
+}

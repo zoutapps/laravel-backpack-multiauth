@@ -1,0 +1,4 @@
+<?php
+
+Route::get('dashboard', 'AdminController@dashboard');
+Route::get('/', 'AdminController@redirect');
