@@ -21,7 +21,7 @@ abstract class Generator
      */
     protected $stubService;
 
-    function __construct(FileService $fileService, StubService $stubService)
+    public function __construct(FileService $fileService, StubService $stubService)
     {
         $this->fileService = $fileService;
         $this->stubService = $stubService;
@@ -29,7 +29,7 @@ abstract class Generator
 
     protected function filePath($path, SplFileInfo $file = null)
     {
-        return base_path() . $path;
+        return base_path().$path;
     }
 
     protected function stubContent($file)
@@ -45,6 +45,7 @@ abstract class Generator
             $content = $this->stubService->replaceCustom($service, $content, 'service');
         }
         $content = $this->stubService->replaceClass($name, $content);
+
         return $this->stubService->replaceModelNamespace($content);
     }
 
@@ -59,6 +60,7 @@ abstract class Generator
     {
         $filePath = $this->filePath($path);
         $content = $this->compile($stub, $name, $service);
+
         return $this->fileService->putFile($filePath, $content, $force);
     }
 }

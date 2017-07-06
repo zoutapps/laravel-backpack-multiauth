@@ -7,12 +7,11 @@ use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
 class ModelGenerator extends Generator
 {
-
     use CanNormalizeString;
 
     protected function filePath($path, SplFileInfo $file = null)
     {
-        return base_path() . $path;
+        return base_path().$path;
     }
 
     protected function modelPath($name, $lucid = false)
@@ -27,9 +26,9 @@ class ModelGenerator extends Generator
     protected function stubPath($lucid = false)
     {
         if ($lucid) {
-            return __DIR__ . '/../stubs/Lucid/Model/Model.stub';
+            return __DIR__.'/../stubs/Lucid/Model/Model.stub';
         } else {
-            return __DIR__ . '/../stubs/Model/Model.stub';
+            return __DIR__.'/../stubs/Model/Model.stub';
         }
     }
 
@@ -45,7 +44,7 @@ class ModelGenerator extends Generator
     {
         $name = $this->normalize($name);
         $service = $this->normalize($service);
-        $path = $this->modelPath($name,true);
+        $path = $this->modelPath($name, true);
         $stub = $this->stubPath(true);
         $this->generateFile($name, $path, new SplFileInfo($stub), $force, $service);
     }
@@ -53,8 +52,8 @@ class ModelGenerator extends Generator
     private function modelSubPath($prefix, $name)
     {
         $sub = ltrim(config('zoutapps.multiauth.model_path'), '/');
-        $path = rtrim($prefix . $sub . '/', '/');
+        $path = rtrim($prefix.$sub.'/', '/');
 
-        return $path . '/' . ucfirst($name) . '.php';
+        return $path.'/'.ucfirst($name).'.php';
     }
 }

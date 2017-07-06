@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Generators;
 
-
 use SplFileInfo;
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 

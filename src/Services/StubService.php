@@ -4,35 +4,35 @@ namespace ZoutApps\LaravelBackpackAuth\Services;
 
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
-class StubService {
-
+class StubService
+{
     use CanNormalizeString;
 
     /**
-     * Default singular keys
+     * Default singular keys.
      * @var array
      */
     private $singularKeys = [
         '{{singularCamel}}',
         '{{singularSlug}}',
         '{{singularSnake}}',
-        '{{singularClass}}'
+        '{{singularClass}}',
     ];
 
     /**
-     * Default plural keys
+     * Default plural keys.
      * @var array
      */
     private $pluralKeys = [
         '{{pluralCamel}}',
         '{{pluralSlug}}',
         '{{pluralSnake}}',
-        '{{pluralClass}}'
+        '{{pluralClass}}',
     ];
     private $classKey = '{{Class}}';
     private $modelSubKey = '{{modelSub}}';
 
-    function __construct()
+    public function __construct()
     {
     }
 
@@ -42,12 +42,12 @@ class StubService {
             camel_case($replace),
             str_slug($replace),
             snake_case($replace),
-            ucfirst(camel_case($replace))
+            ucfirst(camel_case($replace)),
         ];
     }
 
     /**
-     * Replace default keys in subject with replace
+     * Replace default keys in subject with replace.
      *
      * @param string $replace the replacement value
      * @param string $subject the subject to replace in
@@ -55,16 +55,16 @@ class StubService {
      */
     public function replace(string $replace, string $subject): string
     {
-        $keys = (object)[
+        $keys = (object) [
             'singluar' => $this->singularKeys,
-            'plural' => $this->pluralKeys
+            'plural' => $this->pluralKeys,
         ];
 
         return $this->replaceKeys($replace, $subject, $keys);
     }
 
     /**
-     * Replace class keyword
+     * Replace class keyword.
      *
      * @param string $replace
      * @param string $subject
@@ -73,11 +73,12 @@ class StubService {
     public function replaceClass(string $replace, string $subject): string
     {
         $replace = $this->normalize($replace);
+
         return str_replace($this->classKey, ucfirst(camel_case($replace)), $subject);
     }
 
     /**
-     * Replace model subfolder/namespace in subject
+     * Replace model subfolder/namespace in subject.
      *
      * @param string $subject the subject to replace in
      * @return string
@@ -90,34 +91,37 @@ class StubService {
         }
 
         $replace = ltrim(rtrim($modelSub, '/'), '/');
+
         return str_replace($this->modelSubKey, $replace, $subject);
     }
 
     /**
-     * Generates the keys for given name
+     * Generates the keys for given name.
      * @param $name
      * @return object
      */
-    private function generateSuffixKeys($name) {
+    private function generateSuffixKeys($name)
+    {
         $name = ucfirst($name);
-        return (object)[
+
+        return (object) [
             'singular' => [
                 '{{singularCamel'.$name.'}}',
                 '{{singularSlug'.$name.'}}',
                 '{{singularSnake'.$name.'}}',
-                '{{singularClass'.$name.'}}'
+                '{{singularClass'.$name.'}}',
             ],
             'plural' => [
                 '{{pluralCamel'.$name.'}}',
                 '{{pluralSlug'.$name.'}}',
                 '{{pluralSnake'.$name.'}}',
-                '{{pluralClass'.$name.'}}'
-            ]
+                '{{pluralClass'.$name.'}}',
+            ],
         ];
     }
 
     /**
-     * Replace named keys
+     * Replace named keys.
      *
      * @param string $replace the replacement value
      * @param string $subject the subject to replace in
@@ -127,15 +131,15 @@ class StubService {
     public function replaceCustom(string $replace, string $subject, string $name)
     {
         $keys = $this->generateSuffixKeys($name);
-        return $this->replaceKeys($replace, $subject, $keys);
 
+        return $this->replaceKeys($replace, $subject, $keys);
     }
 
     private function replaceKeys(string $replace, string $subject, $keys)
     {
         $replace = $this->normalize($replace);
         $singularReplace = $this->generateReplacements(str_singular($replace));
-        $pluralReplace  = $this->generateReplacements(str_plural($replace));
+        $pluralReplace = $this->generateReplacements(str_plural($replace));
 
         $subject = str_replace($keys->plural, $pluralReplace, $subject);
         $subject = str_replace($keys->singular, $singularReplace, $subject);

@@ -2,9 +2,8 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Generators;
 
-
-use Illuminate\Support\Collection;
 use SplFileInfo;
+use Illuminate\Support\Collection;
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
 class MiddlewaresGenerator extends Generator
@@ -14,12 +13,12 @@ class MiddlewaresGenerator extends Generator
     protected function filePath($path, SplFileInfo $file = null)
     {
         $name = basename($path);
-        $path = dirname($path) . '/';
+        $path = dirname($path).'/';
         $stubName = $file->getBasename('.stub');
         if ($stubName == 'Middleware') {
-            return base_path() . $path . 'RedirectIf' . $name . '.php';
+            return base_path().$path.'RedirectIf'.$name.'.php';
         } else {
-            return base_path() . $path . 'RedirectIfNot' . $name . '.php';
+            return base_path().$path.'RedirectIfNot'.$name.'.php';
         }
     }
 
@@ -32,7 +31,7 @@ class MiddlewaresGenerator extends Generator
     ) {
         $name = $this->normalize($name);
         $service = $this->normalize($service);
-        $path = $this->getPath($lucid, $service) . ucfirst($name);
+        $path = $this->getPath($lucid, $service).ucfirst($name);
         $stubs = $this->getStubs($lucid, $domain);
         $this->generateFiles($name, $path, $stubs, $force);
     }
@@ -40,7 +39,7 @@ class MiddlewaresGenerator extends Generator
     private function getPath(bool $lucid, string $service = null)
     {
         if ($lucid) {
-            return '/src/Services/' . studly_case($service) . '/Http/Middleware/';
+            return '/src/Services/'.studly_case($service).'/Http/Middleware/';
         } else {
             return '/app/Http/Middleware/';
         }
@@ -57,20 +56,21 @@ class MiddlewaresGenerator extends Generator
     private function getStubPaths(bool $lucid, bool $domain = false)
     {
         $prefix = $this->getPathPrefix($lucid, $domain);
+
         return [
-            $prefix . 'Middleware.stub',
-            $prefix . 'GuestMiddleware.stub'
+            $prefix.'Middleware.stub',
+            $prefix.'GuestMiddleware.stub',
         ];
     }
 
     private function getPathPrefix(bool $lucid, bool $domain = false)
     {
         if ($lucid && $domain) {
-            return __DIR__ . '/../stubs/Lucid/DomainMiddleware/';
+            return __DIR__.'/../stubs/Lucid/DomainMiddleware/';
         } elseif ($lucid) {
-            return __DIR__ . '/../stubs/Lucid/Middleware/';
+            return __DIR__.'/../stubs/Lucid/Middleware/';
         } else {
-            return __DIR__ . '/../stubs/Middleware/';
+            return __DIR__.'/../stubs/Middleware/';
         }
     }
 }

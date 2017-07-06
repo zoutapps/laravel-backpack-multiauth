@@ -6,7 +6,6 @@ use Illuminate\Filesystem\Filesystem;
 
 class FileService
 {
-
     /**
      * @var \Illuminate\Filesystem\Filesystem
      */
@@ -94,7 +93,7 @@ class FileService
      */
     public function putFile($path, $content, $force): bool
     {
-        if ($this->pathExists($path) && !$force) {
+        if ($this->pathExists($path) && ! $force) {
             return false;
         }
 
@@ -116,7 +115,7 @@ class FileService
      */
     public function appendFile(string $path, string $content, bool $force): bool
     {
-        if ($this->pathExists($path) && !$force) {
+        if ($this->pathExists($path) && ! $force) {
             return false;
         }
 
@@ -127,7 +126,7 @@ class FileService
     }
 
     /**
-     * Get the file content
+     * Get the file content.
      *
      * @param string $path
      * @return string
@@ -147,7 +146,7 @@ class FileService
      */
     public function putContent(string $path, string $content, bool $force): bool
     {
-        if ($this->pathExists($path) && !$force) {
+        if ($this->pathExists($path) && ! $force) {
             return false;
         }
 
@@ -188,7 +187,6 @@ class FileService
         return false;
     }
 
-
     /**
      * Build the directory for if necessary.
      *
@@ -197,14 +195,15 @@ class FileService
      */
     protected function makeDirectory(string $path): bool
     {
-        if (!$this->files->isDirectory(dirname($path))) {
+        if (! $this->files->isDirectory(dirname($path))) {
             return $this->files->makeDirectory(dirname($path), 0777, true, true);
         }
+
         return true;
     }
 
     /**
-     * Return array of all files in given path
+     * Return array of all files in given path.
      *
      * @param string $path
      * @return array
@@ -224,5 +223,4 @@ class FileService
 //    {
 //        return $content;
 //    }
-
 }

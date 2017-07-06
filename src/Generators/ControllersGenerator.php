@@ -2,8 +2,8 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Generators;
 
-use Illuminate\Support\Collection;
 use SplFileInfo;
+use Illuminate\Support\Collection;
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
 class ControllersGenerator extends Generator
@@ -27,9 +27,9 @@ class ControllersGenerator extends Generator
     private function getPath(string $name, bool $lucid, string $service = null)
     {
         if ($lucid) {
-            return '/src/Services/' . studly_case($service) . '/Http/Controllers/' . ucfirst($name) . '/Auth/';
+            return '/src/Services/'.studly_case($service).'/Http/Controllers/'.ucfirst($name).'/Auth/';
         } else {
-            return '/app/Http/Controllers/' . ucfirst($name) . '/Auth/';
+            return '/app/Http/Controllers/'.ucfirst($name).'/Auth/';
         }
     }
 
@@ -44,22 +44,23 @@ class ControllersGenerator extends Generator
     private function getStubPaths(bool $lucid, bool $domain = false)
     {
         $prefix = $this->getPathPrefix($lucid, $domain);
+
         return [
-            $prefix . 'LoginController.stub',
-            $prefix . 'RegisterController.stub',
-            $prefix . 'ForgotPasswordController.stub',
-            $prefix . 'ResetPasswordController.stub'
+            $prefix.'LoginController.stub',
+            $prefix.'RegisterController.stub',
+            $prefix.'ForgotPasswordController.stub',
+            $prefix.'ResetPasswordController.stub',
         ];
     }
 
     private function getPathPrefix(bool $lucid, bool $domain = false)
     {
         if ($lucid && $domain) {
-            return __DIR__ . '/../stubs/Lucid/DomainControllers/';
+            return __DIR__.'/../stubs/Lucid/DomainControllers/';
         } elseif ($lucid) {
-            return __DIR__ . '/../stubs/Lucid/Controllers/';
+            return __DIR__.'/../stubs/Lucid/Controllers/';
         } else {
-            return __DIR__ . '/../stubs/Controllers/';
+            return __DIR__.'/../stubs/Controllers/';
         }
     }
 }
