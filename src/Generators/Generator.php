@@ -27,7 +27,10 @@ abstract class Generator
         $this->stubService = $stubService;
     }
 
-    protected abstract function filePath($path, $file = null);
+    protected function filePath($path, SplFileInfo $file = null)
+    {
+        return base_path() . $path;
+    }
 
     protected function stubContent($file)
     {
@@ -45,17 +48,17 @@ abstract class Generator
         return $this->stubService->replaceModelNamespace($content);
     }
 
-    protected function generateFiles(string $path, array $files, string $name, bool $force, string $service = null)
+    protected function generateFiles(string $name, string $path, array $stubs, bool $force, string $service = null)
     {
-        foreach ($files as $file) {
-            $this->generateFile($name, $path, $file, $force, $service);
+        foreach ($stubs as $stub) {
+            $this->generateFile($name, $path, $stub, $force, $service);
         }
     }
 
-    protected function generateFile(string $name, string $path, SplFileInfo $file, bool $force, string $service = null)
+    protected function generateFile(string $name, string $path, SplFileInfo $stub, bool $force, string $service = null)
     {
         $filePath = $this->filePath($path);
-        $content = $this->compile($file, $name, $service);
+        $content = $this->compile($stub, $name, $service);
         return $this->fileService->putFile($filePath, $content, $force);
     }
 }

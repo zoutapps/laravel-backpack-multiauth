@@ -2,6 +2,7 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Generators;
 
+use SplFileInfo;
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
 class ViewsGenerator extends Generator
@@ -9,7 +10,7 @@ class ViewsGenerator extends Generator
 
     use CanNormalizeString;
 
-    protected function filePath($path, $file = null)
+    protected function filePath($path, SplFileInfo $file = null)
     {
         return base_path() . $path . $file->getRelativePath() . '/' . $this->parseFileName($file);
     }
@@ -20,8 +21,8 @@ class ViewsGenerator extends Generator
         $path = '/recources/views/' . $name . '/';
         $views = __DIR__ . '/../stubs/views';
 
-        $viewFiles = $this->fileService->allFiles($views);
-        $this->generateFiles($name, $viewFiles, $views, $force);
+        $viewStubs = $this->fileService->allFiles($views);
+        $this->generateFiles($name, $path, $viewStubs, $views, $force);
     }
 
     public function generateLucidViews(string $name, string $service, bool $force, bool $domain = false)
@@ -31,8 +32,8 @@ class ViewsGenerator extends Generator
 
         $path = '/src/Services/' . studly_case($service) . '/resources/views/' . $name . '/';
         $views = $domain ? __DIR__ . '/../stubs/Lucid/views/' : __DIR__ . '/../stubs/Lucid/domain-views/';
-        $viewFiles = $this->fileService->allFiles($views);
-        $this->generateFiles($name, $path, $viewFiles, $force, $service);
+        $viewStubs = $this->fileService->allFiles($views);
+        $this->generateFiles($name, $path, $viewStubs, $force, $service);
     }
 
     private function parseFileName($file)

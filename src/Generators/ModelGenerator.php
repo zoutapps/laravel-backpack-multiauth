@@ -10,7 +10,7 @@ class ModelGenerator extends Generator
 
     use CanNormalizeString;
 
-    protected function filePath($path, $file = null)
+    protected function filePath($path, SplFileInfo $file = null)
     {
         return base_path() . $path;
     }
