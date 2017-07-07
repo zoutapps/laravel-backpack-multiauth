@@ -17,7 +17,7 @@ class FileService
         $this->files = $files;
     }
 
-    private function shouldNotOverwriteIfExists(string $path, bool $force, Command $cmd = null): bool
+    private function shouldNotOverwriteIfExists(string $path, bool $force, Command $cmd = null, string $question = null): bool
     {
         if (!$this->pathExists($path) || $force) {
             return false;
@@ -27,7 +27,9 @@ class FileService
             return false;
         }
 
-        return $cmd->confirm('The file at '.$path.' exists. Do you want to overwrite it?');
+        $question = $question ?? 'Do you want to overwrite it?';
+        $cmd->warn('The file at '.$path.' exists.');
+        return $cmd->confirm($question);
     }
 
     /**
@@ -70,7 +72,7 @@ class FileService
      */
     public function appendFile(string $path, string $content, bool $force, Command $cmd = null): bool
     {
-        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd)) {
+        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd, 'Do you want to append content?')) {
             return false;
         }
 
@@ -106,7 +108,7 @@ class FileService
      */
     public function putContent(string $path, string $content, bool $force, Command $cmd = null): bool
     {
-        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd)) {
+        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd, 'Do you want to replace the content?')) {
             return false;
         }
 
