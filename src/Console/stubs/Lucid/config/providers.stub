@@ -1,5 +1,0 @@
-
-        '{{pluralSnake}}' => [
-            'driver' => 'eloquent',
-            'model' => App\Data{{modelSub}}\{{singularClass}}::class,
-        ],

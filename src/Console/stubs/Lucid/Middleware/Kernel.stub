@@ -1,3 +1,0 @@
-
-        '{{singularSnake}}' => \App\Services\{{singularClassService}}\Http\Middleware\RedirectIfNot{{singularClass}}::class,
-        '{{singularSnake}}.guest' => \App\Services\{{singularClassService}}\Http\Middleware\RedirectIf{{singularClass}}::class,
