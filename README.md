@@ -6,17 +6,18 @@
 [![Total Downloads](https://poser.pugx.org/zoutapps/laravel-backpack-multiauth/downloads)](https://packagist.org/packages/zoutapps/laravel-backpack-multiauth)
 [![License](https://poser.pugx.org/zoutapps/laravel-backpack-multiauth/license)](https://packagist.org/packages/zoutapps/laravel-backpack-multiauth)
 
-Easy out of the box multi-auth in Laravel and in [backpackforlaravel.com](http://backpackforlaravel.com).
+Easy out of the box multiauth in Laravel and in [backpackforlaravel.com](http://backpackforlaravel.com).
 
 And with [laravel-permisson](https://github.com/spatie/laravel-permission) you can also create pseudo user models to provide authentication vie roles.
 
+- `php artisan zoutapps:multiauth` Generates a new auth guard and sets everything up.
+- `php artisan zoutapps:roleauth` Generates a user subclass with role and sets up corresponding guards.
+- `php artisan zoutapps:backpack:multiauth`Swaps the default backpack auth model and guard with a newly created.
+- `php artisan zoutapps:backpack:roleauth` Swaps the default backpack auth model and guard with a newly created role based.
 
-- `php artisan zoutapps:multiauth` Add new auth guard for multiauth in Laravel
-- `php artisan zoutapps:roleauth` Add new User subclass model with global role scope to mimic MultiAuth with Roles from Spatie\Permission
-- `php artisan zoutapps:backpackauth` Add new guard for Laravel-Backpack admin panel login
 
 ## What it does?
-With one simple command you can setup multi/role auth for your Laravel 5.3 project.  
+With one simple command you can setup multi/role auth for your Laravel 5.4 project.  
 The package installs:
 - Model 
 - Migration 
@@ -62,40 +63,46 @@ public function register()
 By running the commands you can setup multi/role auth for laravel or switch to an new model for laravel-backpack.
 
 ```
-php artisan zoutapps:multiauth {singular_lowercase_name_of_guard} -f
+php artisan zoutapps:multiauth {singular_lowercase_name_of_guard}
 
 // Examples
-php artisan zoutapps:multiauth admin -f
-php artisan zoutapps:multiauth employee -f
-php artisan zoutapps:multiauth customer -f
+php artisan zoutapps:multiauth admin
+php artisan zoutapps:multiauth employee
+php artisan zoutapps:multiauth customer
 ```
 
 ```
-php artisan zoutapps:roleauth {singular_lowercase_name_of_guard} -f
+php artisan zoutapps:roleauth {singular_lowercase_name_of_guard}
 
 // Examples
-php artisan zoutapps:roleauth admin -f
-php artisan zoutapps:roleauth employee -f
-php artisan zoutapps:roleauth customer -f
+php artisan zoutapps:roleauth admin
+php artisan zoutapps:roleauth employee
+php artisan zoutapps:roleauth customer
 ```
 
 ```
-php artisan zoutapps:backpackauth {singular_lowercasae_name_of_guard} -f
+php artisan zoutapps:backpack:multiauth {singular_lowercasae_name_of_guard}
 
 // Example
-php artisan zoutapps:backpackauth administrator -f
+php artisan zoutapps:backpack:multiauth administrator
+```
+
+```
+php artisan zoutapps:backpack:roleauth {singular_lowercasae_name_of_guard} {exact_role_name}
+
+// Example
+php artisan zoutapps:backpack:multiauth administrator
 ```
 
 **Notice:**  
-If you don't provide `-f` flag, it will not work. It is a protection against accidental activation.  
-In the future there will be guided setup when omitting the `-f` flag.
+You can provide the `-f` flag to force overwrite existing files. If you did not provide `-f` we will always ask you before overwriting.
 
-**Alternative:**
-If you want to install Multi-Auth files in a subdomain you must pass the option `--domain`.
+**Alternatives:**
+If you want to install multiauth files in a subdomain you must pass the option `--domain`.
 ```
-php artisan multi-auth:install admin -f --domain
-php artisan multi-auth:install employee -f --domain
-php artisan multi-auth:install customer -f --domain
+php artisan zoutapps:multiauth admin --domain
+php artisan zoutapps:multiauth employee --domain
+php artisan zoutapps:multiauth customer --domain
 ```
 
 To be able to use this feature properly, you should add a key to your .env file:
@@ -113,30 +120,32 @@ php artisan migrate
 
 ### Step 5: Try it
 
-Go to: `http://url_to_your_project/guard/login`
+Go to: `http://url_to_your_project/guard/login`  
 Example: `http://project/admin/login`
 
 ## Options
 
+If you want to see which files are generated or touched provide the `-v` flag.
+
 If you don't want model and migration use `--model` flag.
 ```
-php artisan multi-auth:install admin -f --model
+php artisan zoutapps:multiauth admin --model
 ```
 
 If you don't want views use `--views` flag.
 ```
-php artisan multi-auth:install admin -f --views
+php artisan zoutapps:multiauth admin --views
 ```
 
 If you don't want routes in your `routes/web.php` file, use `--routes` flag.
 
 ```
-php artisan multi-auth:install admin -f --routes
+php artisan zoutapps:multiauth admin --routes
 ```
 
 ## Note
 If you want to adapt the redirect path once your `guard` is logged out, add and override the following method in
-your {guard}Auth\LoginController:
+your `{guard}Auth\LoginController`:
 
 ```php
 /**
