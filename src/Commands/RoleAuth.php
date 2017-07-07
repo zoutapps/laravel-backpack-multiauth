@@ -59,7 +59,7 @@ class RoleAuth extends AuthCommand
             $this->injectors->routesInjector->appendWebRoutes($name, $force, $domain);
         }
 
-        $this->info('Role Auth with '.ucfirst($name).' guard and role '.$role.' successfully applied.');
+        $this->info('Role Auth with \''.ucfirst($name).'\' guard and role \''.$role.'\' successfully applied.');
 
         return true;
     }

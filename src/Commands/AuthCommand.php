@@ -89,6 +89,7 @@ abstract class AuthCommand extends Command
     {
         if (!$this->option('force')) {
             $this->info('You did not provide the \'-f\' flag so I will ask for overwrite of existing files.');
+            $this->info('If you don\'t want to interact. Answer with \'no\' and provide \'-f\' on next run.');
             if(!$this->confirm('This command will generate new files, overwrite and append existing ones. Do you want to proceed?')) {
                 return false;
             }
