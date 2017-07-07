@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\{{singularClass}}\Auth;
 
+use App{{modelSub}}\{{singularClass}};
 use Backpack\Base\app\Http\Controllers\Auth\RegisterController as OriginalController;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,23 @@ class RegisterController extends OriginalController
         // Where to redirect users after login / registration.
         $this->redirectTo = property_exists($this, 'redirectTo') ? $this->redirectTo
             : config('backpack.base.route_prefix', 'dashboard');
+    }
+
+    /**
+      * Create a new user instance after a valid registration.
+      *
+      * @param array $data
+      *
+      * @return User
+      */
+    protected function create(array $data)
+    {
+        $user = new use {{singularClass}}();
+        return $user->create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 
     /**
