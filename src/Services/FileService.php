@@ -2,6 +2,7 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Services;
 
+use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
 class FileService
@@ -16,71 +17,20 @@ class FileService
         $this->files = $files;
     }
 
-//    /**
-//     * Install files method.
-//     *
-//     * @param $path
-//     * @param $files
-//     */
-//    protected function writeFiles($path, $files)
-//    {
-//        foreach ($files as $file) {
-//            $this->writeFile($path, $file);
-//        }
-//    }
-//
-//    protected function writeFile($path, $file)
-//    {
-//        $filePath = base_path() . $path . $file->getRelativePath() . '/' . $this->parseFilename($file);
-//
-//        if ($this->putFile($filePath, $file)) {
-//            $this->getInfoMessage($filePath);
-//        }
-//    }
+    private function shouldNotOverwriteIfExists(string $path, bool $force, Command $cmd = null): bool
+    {
+        if (!$this->pathExists($path) || $force) {
+            return false;
+        }
 
-//    /**
-//     * Parse filename
-//     *
-//     * @param $file
-//     * @return string
-//     */
-//    protected function parseFilename($file)
-//    {
-//        return $this->getFileName($file) . $this->getExtension($file);
-//    }
+        if ($cmd == null) {
+            return false;
+        }
 
-//    /**
-//     * Get file name
-//     *
-//     * @param $file
-//     * @return mixed
-//     */
-//    protected function getFileName($file)
-//    {
-//        return $this->getFileRealName($file);
-//    }
-
-//    /**
-//     * Get file real name
-//     *
-//     * @param $file
-//     * @return mixed
-//     */
-//    protected function getFileRealName($file)
-//    {
-//        return $file->getBasename($file->getExtension());
-//    }
-
-//    /**
-//     * Get file extension.
-//     *
-//     * @param $file
-//     * @return bool
-//     */
-//    protected function getExtension($file)
-//    {
-//        return $file->getExtension();
-//    }
+        $overwrite = $cmd->askWithCompletion('The file at '.$path.' exists. Do you want to overwrite it?',
+            ['Yes', 'No']);
+        return mb_strtolower($overwrite) == 'no';
+    }
 
     /**
      * Put given file in path.
@@ -88,12 +38,14 @@ class FileService
      * @param string $path
      * @param string $content
      * @param bool $force
+     * @param \Illuminate\Console\Command $cmd
      * @return bool
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function putFile($path, $content, $force): bool
+    public function putFile($path, $content, $force, Command $cmd = null): bool
     {
-        if ($this->pathExists($path) && ! $force) {
+
+        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd)) {
             return false;
         }
 
@@ -110,12 +62,13 @@ class FileService
      * @param string $path
      * @param string $content
      * @param bool $force
+     * @param Command $cmd
      * @return bool
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    public function appendFile(string $path, string $content, bool $force): bool
+    public function appendFile(string $path, string $content, bool $force, Command $cmd = null): bool
     {
-        if ($this->pathExists($path) && ! $force) {
+        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd)) {
             return false;
         }
 
@@ -142,11 +95,12 @@ class FileService
      * @param string $path
      * @param string $content
      * @param bool $force
+     * @param Command $cmd
      * @return bool
      */
-    public function putContent(string $path, string $content, bool $force): bool
+    public function putContent(string $path, string $content, bool $force, Command $cmd = null): bool
     {
-        if ($this->pathExists($path) && ! $force) {
+        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd)) {
             return false;
         }
 
@@ -178,8 +132,6 @@ class FileService
     public function contentExists($path, $content)
     {
         $originalContent = $this->files->get($path);
-        //$content = $this->replaceKeywords($this->files->get($stub));
-
         if (str_contains(trim($originalContent), trim($content))) {
             return true;
         }
@@ -195,7 +147,7 @@ class FileService
      */
     protected function makeDirectory(string $path): bool
     {
-        if (! $this->files->isDirectory(dirname($path))) {
+        if (!$this->files->isDirectory(dirname($path))) {
             return $this->files->makeDirectory(dirname($path), 0777, true, true);
         }
 
@@ -212,15 +164,4 @@ class FileService
     {
         return $this->files->allFiles($path);
     }
-
-//    /**
-//     * Compile content.
-//     *
-//     * @param $content
-//     * @return mixed
-//     */
-//    protected function compile($content)
-//    {
-//        return $content;
-//    }
 }
