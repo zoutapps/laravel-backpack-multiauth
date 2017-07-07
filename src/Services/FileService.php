@@ -26,10 +26,8 @@ class FileService
         if ($cmd == null) {
             return false;
         }
-
-        $overwrite = $cmd->askWithCompletion('The file at '.$path.' exists. Do you want to overwrite it?',
-            ['Yes', 'No']);
-        return mb_strtolower($overwrite) == 'no';
+        
+        return $cmd->confirm('The file at '.$path.' exists. Do you want to overwrite it?');
     }
 
     /**
