@@ -25,6 +25,7 @@ class ViewsGenerator extends Generator
         $views = __DIR__.'/../stubs/views';
 
         $viewStubs = $this->fileService->allFiles($views);
+
         return $this->generateFiles($name, $path, $viewStubs, $views, $force);
     }
 
@@ -36,6 +37,7 @@ class ViewsGenerator extends Generator
         $path = '/src/Services/'.studly_case($service).'/resources/views/'.$name.'/';
         $views = $domain ? __DIR__.'/../stubs/Lucid/views/' : __DIR__.'/../stubs/Lucid/domain-views/';
         $viewStubs = $this->fileService->allFiles($views);
+
         return $this->generateFiles($name, $path, $viewStubs, $force, $service);
     }
 

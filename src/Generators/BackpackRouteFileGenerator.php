@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Generators;
 
-
 class BackpackRouteFileGenerator extends RouteFileGenerator
 {
     protected function stubPath(bool $lucid)

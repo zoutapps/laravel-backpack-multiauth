@@ -2,17 +2,15 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Providers;
 
-
-use Illuminate\Console\Command;
-use ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\BackpackRouteFileGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\MigrationsGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\ModelGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\NotificationGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\RoleModelGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\ScopeGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\ViewsGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\RoleModelGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\MigrationsGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\NotificationGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\BackpackRouteFileGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator;
 
 class BackpackGeneratorsProvider extends GeneratorsProvider
 {
@@ -54,7 +52,7 @@ class BackpackGeneratorsProvider extends GeneratorsProvider
      */
     public $scopeGenerator;
 
-    function __construct(
+    public function __construct(
         BackpackControllersGenerator $controllersGenerator,
         MiddlewaresGenerator $middlewaresGenerator,
         MigrationsGenerator $migrationsGenerator,

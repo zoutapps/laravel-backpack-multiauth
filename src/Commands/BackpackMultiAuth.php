@@ -2,13 +2,11 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Commands;
 
-
-use ZoutApps\LaravelBackpackAuth\Providers\BackpackGeneratorsProvider;
 use ZoutApps\LaravelBackpackAuth\Providers\InjectorsProvider;
+use ZoutApps\LaravelBackpackAuth\Providers\BackpackGeneratorsProvider;
 
 class BackpackMultiAuth extends AuthCommand
 {
-
     protected $name = 'zoutapps:backpack:multiauth';
     protected $description = 'Swaps the default backpack auth model and guard with a newly created.';
 
@@ -27,7 +25,7 @@ class BackpackMultiAuth extends AuthCommand
      */
     public function handle()
     {
-        if (!parent::handle()) {
+        if (! parent::handle()) {
             return false;
         }
 
@@ -44,7 +42,7 @@ class BackpackMultiAuth extends AuthCommand
         $this->generators->controllersGenerator->generateControllers($name, $force, $domain);
         $this->generators->notificationGenerator->generateNotification($name, $force, $domain);
 
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->generators->modelGenerator->generateModel($name, $force);
             $this->generators->migrationsGenerator->generateMigrations($name, $force);
         }

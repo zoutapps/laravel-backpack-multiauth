@@ -36,6 +36,7 @@ class ModelGenerator extends Generator
         $name = $this->normalize($name);
         $path = $this->modelPath($name);
         $stub = $this->stubPath();
+
         return $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 
@@ -45,6 +46,7 @@ class ModelGenerator extends Generator
         $service = $this->normalize($service);
         $path = $this->modelPath($name, true);
         $stub = $this->stubPath(true);
+
         return $this->generateFile($name, $path, new SplFileInfo($stub), $force, $service);
     }
 

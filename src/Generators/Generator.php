@@ -60,6 +60,7 @@ abstract class Generator
         foreach ($stubs as $stub) {
             $state &= $this->generateFile($name, $path, $stub, $force, $service);
         }
+
         return $state;
     }
 
@@ -67,6 +68,7 @@ abstract class Generator
     {
         $filePath = $this->filePath($path, $stub);
         $content = $this->compile($stub, $name, $service);
+
         return $this->fileService->putFile($filePath, $content, $force, $this->cmd);
     }
 }

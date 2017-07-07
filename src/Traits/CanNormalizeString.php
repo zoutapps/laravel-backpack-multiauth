@@ -7,7 +7,7 @@ trait CanNormalizeString
     private function normalize(string $string = null)
     {
         if ($string == null) {
-            return null;
+            return;
         }
 
         return str_singular(trim($string));

@@ -19,7 +19,7 @@ class FileService
 
     private function shouldNotOverwriteIfExists(string $path, bool $force, Command $cmd = null, string $question = null): bool
     {
-        if (!$this->pathExists($path) || $force) {
+        if (! $this->pathExists($path) || $force) {
             return false;
         }
 
@@ -29,6 +29,7 @@ class FileService
 
         $question = $question ?? 'Do you want to overwrite it?';
         $cmd->warn('The file at '.$path.' exists.');
+
         return $cmd->confirm($question);
     }
 
@@ -44,7 +45,6 @@ class FileService
      */
     public function putFile($path, $content, $force, Command $cmd = null): bool
     {
-
         if ($this->shouldNotOverwriteIfExists($path, $force, $cmd)) {
             return false;
         }
@@ -159,7 +159,7 @@ class FileService
      */
     protected function makeDirectory(string $path): bool
     {
-        if (!$this->files->isDirectory(dirname($path))) {
+        if (! $this->files->isDirectory(dirname($path))) {
             return $this->files->makeDirectory(dirname($path), 0777, true, true);
         }
 
@@ -183,6 +183,7 @@ class FileService
         if (substr($path, 0, strlen($prefix)) == $prefix) {
             return substr($path, strlen($prefix));
         }
+
         return $path;
     }
 }

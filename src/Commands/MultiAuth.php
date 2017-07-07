@@ -15,7 +15,7 @@ class MultiAuth extends AuthCommand
      */
     public function handle()
     {
-        if (!parent::handle()) {
+        if (! parent::handle()) {
             return false;
         }
 
@@ -34,16 +34,16 @@ class MultiAuth extends AuthCommand
         $this->generators->controllersGenerator->generateControllers($name, $force, $domain, $lucid, $service);
         $this->generators->notificationGenerator->generateNotification($name, $force, $domain, $lucid);
 
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->generators->modelGenerator->generateModel($name, $force, $lucid, $service);
             $this->generators->migrationsGenerator->generateMigrations($name, $force);
         }
 
-        if (!$this->option('views')) {
+        if (! $this->option('views')) {
             $this->generators->viewsGenerator->generateViews($name, $force, $domain, $lucid, $service);
         }
 
-        if (!$this->option('routes')) {
+        if (! $this->option('routes')) {
             $this->injectors->routesInjector->appendWebRoutes($name, $force, $domain, $lucid, $service);
         }
 

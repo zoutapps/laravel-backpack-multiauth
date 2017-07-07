@@ -15,7 +15,6 @@ class ControllersGenerator extends Generator
         return parent::filePath($path, $file).$file->getBasename('.stub').'.php';
     }
 
-
     public function generateControllers(
         string $name,
         bool $force,

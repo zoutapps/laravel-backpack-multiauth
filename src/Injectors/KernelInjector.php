@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Injectors;
 
-
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
 class KernelInjector extends Injector

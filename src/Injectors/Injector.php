@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Injectors;
 
-
 use SplFileInfo;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
@@ -52,7 +51,8 @@ abstract class Injector
             return $original;
         }
 
-        $stub = $inject['prefix']? $content.$inject['search']:$inject['search'].$content;
+        $stub = $inject['prefix'] ? $content.$inject['search'] : $inject['search'].$content;
+
         return str_replace($inject['search'], $stub, $original);
     }
 
@@ -67,6 +67,7 @@ abstract class Injector
     {
         $filePath = $this->filePath($path);
         $content = $this->compile($name, $path, $inject, $service);
+
         return $this->fileService->putContent($filePath, $content, $force, $this->cmd);
     }
 }

@@ -14,7 +14,6 @@ class NotificationGenerator extends Generator
         return parent::filePath($path, $file).$file->getBasename('.stub').'.php';
     }
 
-
     protected function stubPath(bool $lucid, bool $domain)
     {
         if ($lucid && $domain) {

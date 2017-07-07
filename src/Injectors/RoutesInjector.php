@@ -2,7 +2,6 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Injectors;
 
-
 use ZoutApps\LaravelBackpackAuth\Traits\CanNormalizeString;
 
 class RoutesInjector extends Injector
@@ -11,7 +10,6 @@ class RoutesInjector extends Injector
 
     public function injectRoutes(string $name, bool $force, bool $domain, bool $lucid = false, string $service = null)
     {
-
         $service = $this->normalize($service);
         $path = $this->getProviderPath($lucid, $service);
         $injects = $this->getInjects($lucid, $domain);
@@ -32,20 +30,21 @@ class RoutesInjector extends Injector
         }
         $stubContent = $this->fileService->getContent($stub);
         $stubContent = $this->stubService->replace($name, $stubContent);
-        if (!$this->fileService->contentExists($path, $stubContent)) {
+        if (! $this->fileService->contentExists($path, $stubContent)) {
             return $this->fileService->appendFile($path, $stubContent, $force, $this->cmd);
         }
+
         return false;
     }
 
     private function appendLucidWebRoutes(string $name, bool $force, bool $domain, string $service = null)
     {
         $lucidPath = base_path().'/src/Services/'.studly_case($service).'/Http/routes.php';
-        $stub = !$domain
+        $stub = ! $domain
             ? __DIR__.'/../stubs/Lucid/routes/web.stub'
             : __DIR__.'/../stubs/Lucid/domain-routes/web.stub';
 
-        $lucidStub = !$domain
+        $lucidStub = ! $domain
             ? __DIR__.'/../stubs/Lucid/routes/map-method.stub'
             : __DIR__.'/../stubs/Lucid/domain-routes/map-method.stub';
 
@@ -54,15 +53,16 @@ class RoutesInjector extends Injector
         $lucidContent = $this->fileService->getContent($lucidStub);
         $lucidContent = $this->stubService->replace($name, $lucidContent);
 
-        if (!$this->fileService->contentExists($lucidPath, $lucidContent)) {
-            if(!$this->fileService->appendFile($lucidPath, $lucidContent, $force, $this->cmd)) {
+        if (! $this->fileService->contentExists($lucidPath, $lucidContent)) {
+            if (! $this->fileService->appendFile($lucidPath, $lucidContent, $force, $this->cmd)) {
                 return false;
             }
         }
 
-        if (!$this->fileService->contentExists($lucidPath, $stubContent)) {
+        if (! $this->fileService->contentExists($lucidPath, $stubContent)) {
             return $this->fileService->appendFile($lucidPath, $stubContent, $force, $this->cmd);
         }
+
         return false;
     }
 
@@ -98,7 +98,7 @@ class RoutesInjector extends Injector
     private function getMethod(bool $lucid, bool $domain = false)
     {
         if ($lucid) {
-            return null;
+            return;
         } else {
             return [
                 'search' => "    /**\n".'     * Define the "web" routes for the application.',

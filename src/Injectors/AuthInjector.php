@@ -37,7 +37,7 @@ class AuthInjector extends Injector
                 'search' => "'passwords' => [",
                 'stub'   => __DIR__.'/../stubs/config/passwords.stub',
                 'prefix' => false,
-            ]
+            ],
         ];
     }
 
@@ -48,6 +48,5 @@ class AuthInjector extends Injector
         } else {
             return __DIR__.'/../stubs/config/providers.stub';
         }
-
     }
 }

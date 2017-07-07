@@ -2,12 +2,11 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Commands;
 
-use ZoutApps\LaravelBackpackAuth\Providers\GeneratorsProvider;
 use ZoutApps\LaravelBackpackAuth\Providers\InjectorsProvider;
+use ZoutApps\LaravelBackpackAuth\Providers\GeneratorsProvider;
 
 class RoleAuth extends AuthCommand
 {
-
     protected $name = 'zoutapps:roleauth';
     protected $description = 'Generates a user subclass with role and sets up corresponding guards.';
 
@@ -27,7 +26,7 @@ class RoleAuth extends AuthCommand
      */
     public function handle()
     {
-        if (!parent::handle()) {
+        if (! parent::handle()) {
             return false;
         }
 
@@ -46,16 +45,16 @@ class RoleAuth extends AuthCommand
         $this->generators->notificationGenerator->generateNotification($name, $force, $domain);
         $this->generators->scopeGenerator->generateScope($name, $force, $role);
 
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->generators->modelGenerator->generateModel($name, $force);
             //$this->generators->migrationsGenerator->generateMigrations($name, $force);
         }
 
-        if (!$this->option('views')) {
+        if (! $this->option('views')) {
             $this->generators->viewsGenerator->generateViews($name, $force, $domain);
         }
 
-        if (!$this->option('routes')) {
+        if (! $this->option('routes')) {
             $this->injectors->routesInjector->appendWebRoutes($name, $force, $domain);
         }
 

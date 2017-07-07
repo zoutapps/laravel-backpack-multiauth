@@ -30,6 +30,7 @@ class MigrationsGenerator extends Generator
         }
 
         $path = $path.date('Y_m_d_His').'_'.$migrationName;
+
         return $this->fileService->putFile($path, $content, $force, $this->cmd);
     }
 
@@ -46,7 +47,7 @@ class MigrationsGenerator extends Generator
     {
         return [
             new SplFileInfo(__DIR__.'/../stubs/Model/migration.stub'),
-            new SplFileInfo(__DIR__.'/../stubs/Model/PasswordResetMigration.stub')
+            new SplFileInfo(__DIR__.'/../stubs/Model/PasswordResetMigration.stub'),
         ];
     }
 }

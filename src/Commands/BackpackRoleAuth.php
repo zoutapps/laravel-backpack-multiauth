@@ -3,14 +3,13 @@
  * Created by PhpStorm.
  * User: Oli
  * Date: 07.07.17
- * Time: 15:57
+ * Time: 15:57.
  */
 
 namespace ZoutApps\LaravelBackpackAuth\Commands;
 
-
-use ZoutApps\LaravelBackpackAuth\Providers\BackpackGeneratorsProvider;
 use ZoutApps\LaravelBackpackAuth\Providers\InjectorsProvider;
+use ZoutApps\LaravelBackpackAuth\Providers\BackpackGeneratorsProvider;
 
 class BackpackRoleAuth extends AuthCommand
 {
@@ -28,7 +27,7 @@ class BackpackRoleAuth extends AuthCommand
 
     public function handle()
     {
-        if (!parent::handle()) {
+        if (! parent::handle()) {
             return false;
         }
 
@@ -47,7 +46,7 @@ class BackpackRoleAuth extends AuthCommand
         $this->generators->notificationGenerator->generateNotification($name, $force, $domain);
         $this->generators->scopeGenerator->generateScope($name, $force, $role);
 
-        if (!$this->option('model')) {
+        if (! $this->option('model')) {
             $this->generators->modelGenerator->generateModel($name, $force);
             //$this->generators->migrationsGenerator->generateMigrations($name, $force);
         }

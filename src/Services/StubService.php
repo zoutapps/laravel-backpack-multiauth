@@ -129,6 +129,7 @@ class StubService
     public function replaceExact(string $replace, string $subject, string $key)
     {
         $key = '{{'.$key.'}}';
+
         return str_replace($key, $replace, $subject);
     }
 
