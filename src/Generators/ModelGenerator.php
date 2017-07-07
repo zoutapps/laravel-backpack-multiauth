@@ -9,11 +9,6 @@ class ModelGenerator extends Generator
 {
     use CanNormalizeString;
 
-    protected function filePath($path, SplFileInfo $file = null)
-    {
-        return base_path().$path;
-    }
-
     protected function modelPath($name, $lucid = false)
     {
         if ($lucid) {
@@ -32,21 +27,25 @@ class ModelGenerator extends Generator
         }
     }
 
-    public function generateModel(string $name, bool $force)
+    public function generateModel(string $name, bool $force, bool $lucid, string $service = null)
     {
+        if ($lucid) {
+            return $this->generateLucidModel($name, $force, $service);
+        }
+
         $name = $this->normalize($name);
         $path = $this->modelPath($name);
         $stub = $this->stubPath();
-        $this->generateFile($name, $path, new SplFileInfo($stub), $force);
+        return $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 
-    public function generateLucidModel(string $name, string $service, bool $force)
+    private function generateLucidModel(string $name, bool $force, string $service)
     {
         $name = $this->normalize($name);
         $service = $this->normalize($service);
         $path = $this->modelPath($name, true);
         $stub = $this->stubPath(true);
-        $this->generateFile($name, $path, new SplFileInfo($stub), $force, $service);
+        return $this->generateFile($name, $path, new SplFileInfo($stub), $force, $service);
     }
 
     private function modelSubPath($prefix, $name)

@@ -26,8 +26,8 @@ class MiddlewaresGenerator extends Generator
         string $name,
         bool $force,
         bool $lucid = false,
-        string $service = null,
-        bool $domain = false
+        bool $domain = false,
+        string $service = null
     ) {
         $name = $this->normalize($name);
         $service = $this->normalize($service);

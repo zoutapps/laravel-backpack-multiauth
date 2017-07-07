@@ -2,6 +2,7 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Generators;
 
+use Illuminate\Console\Command;
 use SplFileInfo;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
@@ -20,6 +21,11 @@ abstract class Generator
      * @var \ZoutApps\LaravelBackpackAuth\Services\StubService
      */
     protected $stubService;
+
+    /**
+     * @var \Illuminate\Console\Command
+     */
+    protected $cmd;
 
     public function __construct(FileService $fileService, StubService $stubService)
     {
@@ -51,9 +57,11 @@ abstract class Generator
 
     protected function generateFiles(string $name, string $path, array $stubs, bool $force, string $service = null)
     {
+        $state = true;
         foreach ($stubs as $stub) {
-            $this->generateFile($name, $path, $stub, $force, $service);
+            $state &= $this->generateFile($name, $path, $stub, $force, $service);
         }
+        return $state;
     }
 
     protected function generateFile(string $name, string $path, SplFileInfo $stub, bool $force, string $service = null)
