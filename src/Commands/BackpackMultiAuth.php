@@ -50,5 +50,14 @@ class BackpackMultiAuth extends AuthCommand
         }
 
         $this->injectors->routesInjector->appendWebRoutes($name, $force, $domain);
+
+        $this->info('Multi Auth with '.ucfirst($name).' guard successfully applied to backpack.');
+        $this->info('You need to apply some changes to your backpack config:');
+        $this->info('* set your "user_model_fqn" to the created model ');
+        $this->info('* disable "setup_auth_routes"');
+        $this->info('* disable "setup_dashboard_routes"');
+        $this->info('* set "route_prefix" to '.str_singular(str_slug($name)));
+
+        return true;
     }
 }

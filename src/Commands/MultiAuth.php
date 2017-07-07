@@ -46,6 +46,9 @@ class MultiAuth extends AuthCommand
         if (!$this->option('routes')) {
             $this->injectors->routesInjector->appendWebRoutes($name, $force, $domain, $lucid, $service);
         }
+
+        $this->info('Multi Auth with '.ucfirst($name).' guard successfully applied.');
+
         return true;
     }
 }
