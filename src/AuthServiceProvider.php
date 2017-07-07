@@ -4,6 +4,7 @@ namespace ZoutApps\LaravelBackpackAuth;
 
 use Illuminate\Support\ServiceProvider;
 use ZoutApps\LaravelBackpackAuth\Commands\BackpackMultiAuth;
+use ZoutApps\LaravelBackpackAuth\Commands\BackpackRoleAuth;
 use ZoutApps\LaravelBackpackAuth\Commands\MultiAuth;
 use ZoutApps\LaravelBackpackAuth\Commands\RoleAuth;
 
@@ -37,7 +38,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->commands([
             MultiAuth::class,
             RoleAuth::class,
-            BackpackMultiAuth::class
+            BackpackMultiAuth::class,
+            BackpackRoleAuth::class
         ]);
     }
 }
