@@ -34,6 +34,25 @@ class RegisterController extends OriginalController
     }
 
     /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param array $data
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        $user = new use {{singularClass}}();
+        $users_table = $user->getTable();
+
+        return Validator::make($data, [
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:'.$users_table,
+            'password' => 'required|min:6|confirmed',
+        ]);
+    }
+
+    /**
       * Create a new user instance after a valid registration.
       *
       * @param array $data
