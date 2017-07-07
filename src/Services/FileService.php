@@ -26,7 +26,7 @@ class FileService
         if ($cmd == null) {
             return false;
         }
-        
+
         return $cmd->confirm('The file at '.$path.' exists. Do you want to overwrite it?');
     }
 
@@ -51,6 +51,10 @@ class FileService
 
         $this->files->put($path, $content);
 
+        if ($cmd != null) {
+            $cmd->comment('Wrote file: '.$this->relativePath($path), 'v');
+        }
+
         return true;
     }
 
@@ -72,6 +76,10 @@ class FileService
 
         $this->makeDirectory($path);
         $this->files->append($path, $content);
+
+        if ($cmd != null) {
+            $cmd->comment('Appended file: '.$this->relativePath($path), 'v');
+        }
 
         return true;
     }
@@ -105,6 +113,10 @@ class FileService
         $this->makeDirectory($path);
 
         $this->files->put($path, $content);
+
+        if ($cmd != null) {
+            $cmd->comment('Replaced content: '.$this->relativePath($path), 'v');
+        }
 
         return true;
     }
@@ -161,5 +173,14 @@ class FileService
     public function allFiles(string $path)
     {
         return $this->files->allFiles($path);
+    }
+
+    private function relativePath(string $path)
+    {
+        $prefix = base_path();
+        if (substr($path, 0, strlen($prefix)) == $prefix) {
+            return substr($path, strlen($prefix));
+        }
+        return $path;
     }
 }
