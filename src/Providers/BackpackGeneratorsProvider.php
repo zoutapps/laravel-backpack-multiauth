@@ -3,6 +3,7 @@
 namespace ZoutApps\LaravelBackpackAuth\Providers;
 
 
+use Illuminate\Console\Command;
 use ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\BackpackRouteFileGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
@@ -64,14 +65,14 @@ class BackpackGeneratorsProvider extends GeneratorsProvider
         ViewsGenerator $viewsGenerator,
         ScopeGenerator $scopeGenerator
     ) {
-        $this->controllersGenerator = $controllersGenerator;
-        $this->middlewaresGenerator = $middlewaresGenerator;
-        $this->migrationsGenerator = $migrationsGenerator;
-        $this->modelGenerator = $modelGenerator;
-        $this->notificationGenerator = $notificationGenerator;
-        $this->roleModelGenerator = $roleModelGenerator;
-        $this->routeFileGenerator = $routeFileGenerator;
-        $this->viewsGenerator = $viewsGenerator;
-        $this->scopeGenerator = $scopeGenerator;
+        parent::__construct($controllersGenerator,
+            $middlewaresGenerator,
+            $migrationsGenerator,
+            $modelGenerator,
+            $notificationGenerator,
+            $roleModelGenerator,
+            $routeFileGenerator,
+            $viewsGenerator,
+            $scopeGenerator);
     }
 }

@@ -3,6 +3,7 @@
 namespace ZoutApps\LaravelBackpackAuth\Providers;
 
 
+use Illuminate\Console\Command;
 use ZoutApps\LaravelBackpackAuth\Generators\ControllersGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\MigrationsGenerator;
@@ -53,6 +54,8 @@ class GeneratorsProvider
      */
     public $scopeGenerator;
 
+    private $generators;
+
     function __construct(
         ControllersGenerator $controllersGenerator,
         MiddlewaresGenerator $middlewaresGenerator,
@@ -73,5 +76,23 @@ class GeneratorsProvider
         $this->routeFileGenerator = $routeFileGenerator;
         $this->viewsGenerator = $viewsGenerator;
         $this->scopeGenerator = $scopeGenerator;
+
+        $this->generators = [
+            $this->controllersGenerator,
+            $this->middlewaresGenerator,
+            $this->migrationsGenerator,
+            $this->modelGenerator,
+            $this->notificationGenerator,
+            $this->roleModelGenerator,
+            $this->routeFileGenerator,
+            $this->viewsGenerator,
+            $this->scopeGenerator
+        ];
+    }
+
+    function setCommand(Command $cmd) {
+        foreach ($this->generators as $generator) {
+            $generator->cmd = $cmd;
+        }
     }
 }
