@@ -12,7 +12,7 @@ class ControllersGenerator extends Generator
 
     protected function filePath($path, SplFileInfo $file = null)
     {
-        return parent::filePath($path, $file).$file->getBasename();
+        return parent::filePath($path, $file).$file->getBasename('.stub').'.php';
     }
 
 
