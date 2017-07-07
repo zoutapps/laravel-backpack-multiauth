@@ -33,7 +33,7 @@ class RoutesInjector extends Injector
         $stubContent = $this->fileService->getContent($stub);
         $stubContent = $this->stubService->replace($name, $stubContent);
         if (!$this->fileService->contentExists($path, $stubContent)) {
-            return $this->fileService->appendFile($path, $stubContent, $force);
+            return $this->fileService->appendFile($path, $stubContent, $force, $this->cmd);
         }
         return false;
     }
@@ -55,13 +55,13 @@ class RoutesInjector extends Injector
         $lucidContent = $this->stubService->replace($name, $lucidContent);
 
         if (!$this->fileService->contentExists($lucidPath, $lucidContent)) {
-            if(!$this->fileService->appendFile($lucidPath, $lucidContent, $force)) {
+            if(!$this->fileService->appendFile($lucidPath, $lucidContent, $force, $this->cmd)) {
                 return false;
             }
         }
 
         if (!$this->fileService->contentExists($lucidPath, $stubContent)) {
-            return $this->fileService->appendFile($lucidPath, $stubContent, $force);
+            return $this->fileService->appendFile($lucidPath, $stubContent, $force, $this->cmd);
         }
         return false;
     }

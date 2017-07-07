@@ -32,12 +32,12 @@ class MigrationsGenerator extends Generator
 
         foreach ($files as $file) {
             if (str_contains($file->getFilename(), $migrationName)) {
-                return $this->fileService->putFile($file->getPathname(), $content, $force);
+                return $this->fileService->putFile($file->getPathname(), $content, $force, $this->cmd);
             }
         }
 
         $path = $path.date('Y_m_d_His').'_'.$migrationName;
-        return $this->fileService->putFile($path, $content, $force);
+        return $this->fileService->putFile($path, $content, $force, $this->cmd);
     }
 
     private function getMigrationName(string $name, SplFileInfo $stub)
