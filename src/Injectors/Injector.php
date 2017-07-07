@@ -22,6 +22,11 @@ abstract class Injector
      */
     protected $stubService;
 
+    /**
+     * @var \Illuminate\Console\Command
+     */
+    public $cmd;
+
     public function __construct(FileService $fileService, StubService $stubService)
     {
         $this->fileService = $fileService;
@@ -62,6 +67,6 @@ abstract class Injector
     {
         $filePath = $this->filePath($path);
         $content = $this->compile($name, $path, $inject, $service);
-        return $this->fileService->putContent($filePath, $content, $force);
+        return $this->fileService->putContent($filePath, $content, $force, $this->cmd);
     }
 }

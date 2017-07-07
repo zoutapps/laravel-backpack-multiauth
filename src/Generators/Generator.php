@@ -24,7 +24,7 @@ abstract class Generator
     /**
      * @var \Illuminate\Console\Command
      */
-    protected $cmd;
+    public $cmd;
 
     public function __construct(FileService $fileService, StubService $stubService)
     {
@@ -67,7 +67,6 @@ abstract class Generator
     {
         $filePath = $this->filePath($path, $stub);
         $content = $this->compile($stub, $name, $service);
-
-        return $this->fileService->putFile($filePath, $content, $force);
+        return $this->fileService->putFile($filePath, $content, $force, $this->cmd);
     }
 }

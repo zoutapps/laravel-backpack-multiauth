@@ -66,7 +66,9 @@ abstract class AuthCommand extends Command
         }
         parent::__construct();
         $this->generators = $generators;
+        $this->generators->setCommand($this);
         $this->injectors = $injectors;
+        $this->injectors->setCommand($this);
     }
 
     /**
@@ -86,8 +88,7 @@ abstract class AuthCommand extends Command
     protected function checkInput(): bool
     {
         if (!$this->option('force')) {
-            $this->info('--force omitted. Will not overwrite existing files.');
-            $this->error('At the moment you must provide te --force flag in order to generate anything.');
+            $this->info('--force omitted. Will ask for overwrite of existing files.');
         }
 
         if (in_array('lucid', $this->options)) {
