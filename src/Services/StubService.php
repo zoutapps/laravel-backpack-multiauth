@@ -56,7 +56,7 @@ class StubService
     public function replace(string $replace, string $subject): string
     {
         $keys = (object) [
-            'singluar' => $this->singularKeys,
+            'singular' => $this->singularKeys,
             'plural' => $this->pluralKeys,
         ];
 
@@ -118,6 +118,18 @@ class StubService
                 '{{pluralClass'.$name.'}}',
             ],
         ];
+    }
+
+    /**
+     * @param string $replace the exact replacement value
+     * @param string $subject the subject to replace in
+     * @param string $key the key in {{<i>key</i>}}
+     * @return string
+     */
+    public function replaceExact(string $replace, string $subject, string $key)
+    {
+        $key = '{{'.$key.'}}';
+        return str_replace($key, $replace, $subject);
     }
 
     /**

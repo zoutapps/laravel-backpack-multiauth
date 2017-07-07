@@ -25,8 +25,8 @@ class MiddlewaresGenerator extends Generator
     public function generateMiddlewares(
         string $name,
         bool $force,
-        bool $lucid = false,
         bool $domain = false,
+        bool $lucid = false,
         string $service = null
     ) {
         $name = $this->normalize($name);
@@ -36,7 +36,7 @@ class MiddlewaresGenerator extends Generator
         $this->generateFiles($name, $path, $stubs, $force);
     }
 
-    private function getPath(bool $lucid, string $service = null)
+    protected function getPath(bool $lucid, string $service = null)
     {
         if ($lucid) {
             return '/src/Services/'.studly_case($service).'/Http/Middleware/';

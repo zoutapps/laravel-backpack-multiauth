@@ -33,7 +33,7 @@ abstract class Injector
         return base_path().$path;
     }
 
-    protected function compile(string $name, string $path, array $inject, string $service)
+    protected function compile(string $name, string $path, array $inject, string $service = null)
     {
         $original = $this->fileService->getContent($this->filePath($path));
         $content = $this->fileService->getContent($inject['stub']);

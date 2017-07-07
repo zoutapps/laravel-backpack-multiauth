@@ -9,7 +9,7 @@ class RouteFileGenerator extends Generator
 {
     use CanNormalizeString;
 
-    private function stubPath(bool $lucid)
+    protected function stubPath(bool $lucid)
     {
         if ($lucid) {
             return __DIR__.'/../stubs/Lucid/routes/routes.stub';
@@ -18,7 +18,7 @@ class RouteFileGenerator extends Generator
         }
     }
 
-    private function getPath(string $name, bool $lucid, string $service)
+    protected function getPath(string $name, bool $lucid, string $service = null)
     {
         if ($lucid) {
             return '/src/Services/'.studly_case($service).'/Http/'.$name.'-routes.php';

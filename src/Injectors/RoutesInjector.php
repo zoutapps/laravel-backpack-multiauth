@@ -9,7 +9,7 @@ class RoutesInjector extends Injector
 {
     use CanNormalizeString;
 
-    public function injectRoutes(string $name, bool $force, bool $lucid, bool $domain, string $service = null)
+    public function injectRoutes(string $name, bool $force, bool $domain, bool $lucid = false, string $service = null)
     {
 
         $service = $this->normalize($service);
@@ -19,7 +19,7 @@ class RoutesInjector extends Injector
         $this->injectFiles($name, $path, $injects, $force, $service);
     }
 
-    public function appendWebRoutes(string $name, bool $force, bool $lucid, bool $domain, string $service = null)
+    public function appendWebRoutes(string $name, bool $force, bool $domain, bool $lucid = false, string $service = null)
     {
         if ($lucid) {
             return $this->appendLucidWebRoutes($name, $force, $domain, $service);
@@ -117,7 +117,7 @@ class RoutesInjector extends Injector
         }
     }
 
-    private function getProviderPath(bool $lucid, string $service)
+    private function getProviderPath(bool $lucid, string $service = null)
     {
         if ($lucid) {
             return '/src/Services/'.studly_case($service).'/Providers/RouteServiceProvider.php';

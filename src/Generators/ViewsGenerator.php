@@ -14,7 +14,7 @@ class ViewsGenerator extends Generator
         return base_path().$path.$file->getRelativePath().'/'.$this->parseFileName($file);
     }
 
-    public function generateViews(string $name, bool $force, bool $lucid = false, bool $domain = false, string $service = null)
+    public function generateViews(string $name, bool $force, bool $domain = false, bool $lucid = false, string $service = null)
     {
         if ($lucid) {
             return $this->generateLucidViews($name, $force, $domain, $service);

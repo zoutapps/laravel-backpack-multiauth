@@ -9,6 +9,12 @@ class NotificationGenerator extends Generator
 {
     use CanNormalizeString;
 
+    protected function filePath($path, SplFileInfo $file = null)
+    {
+        return parent::filePath($path, $file).$file->getBasename();
+    }
+
+
     protected function stubPath(bool $lucid, bool $domain)
     {
         if ($lucid && $domain) {
@@ -16,11 +22,11 @@ class NotificationGenerator extends Generator
         } elseif ($lucid) {
             return __DIR__.'/../stubs/Lucid/Notifications/ResetPassword.stub';
         } else {
-            return __DIR__.'/../../stubs/Notifications/ResetPassword.stub';
+            return __DIR__.'/../stubs/Notifications/ResetPassword.stub';
         }
     }
 
-    public function generateNotification(string $name, bool $force, bool $lucid, bool $domain = false)
+    public function generateNotification(string $name, bool $force, bool $domain = false, bool $lucid = false)
     {
         $name = $this->normalize($name);
         $path = $this->getPath($name, $lucid);

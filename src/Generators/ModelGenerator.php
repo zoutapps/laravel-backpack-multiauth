@@ -27,7 +27,7 @@ class ModelGenerator extends Generator
         }
     }
 
-    public function generateModel(string $name, bool $force, bool $lucid, string $service = null)
+    public function generateModel(string $name, bool $force, bool $lucid = false, string $service = null)
     {
         if ($lucid) {
             return $this->generateLucidModel($name, $force, $service);

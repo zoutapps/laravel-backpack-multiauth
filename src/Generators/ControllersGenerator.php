@@ -10,11 +10,17 @@ class ControllersGenerator extends Generator
 {
     use CanNormalizeString;
 
+    protected function filePath($path, SplFileInfo $file = null)
+    {
+        return parent::filePath($path, $file).$file->getBasename();
+    }
+
+
     public function generateControllers(
         string $name,
         bool $force,
-        bool $lucid = false,
         bool $domain = false,
+        bool $lucid = false,
         string $service = null
     ) {
         $name = $this->normalize($name);
@@ -24,7 +30,7 @@ class ControllersGenerator extends Generator
         $this->generateFiles($name, $path, $stubs, $force);
     }
 
-    private function getPath(string $name, bool $lucid, string $service = null)
+    protected function getPath(string $name, bool $lucid, string $service = null)
     {
         if ($lucid) {
             return '/src/Services/'.studly_case($service).'/Http/Controllers/'.ucfirst($name).'/Auth/';
@@ -41,7 +47,7 @@ class ControllersGenerator extends Generator
             })->toArray();
     }
 
-    private function getStubPaths(bool $lucid, bool $domain = false)
+    protected function getStubPaths(bool $lucid, bool $domain = false)
     {
         $prefix = $this->getPathPrefix($lucid, $domain);
 
@@ -53,7 +59,7 @@ class ControllersGenerator extends Generator
         ];
     }
 
-    private function getPathPrefix(bool $lucid, bool $domain = false)
+    protected function getPathPrefix(bool $lucid, bool $domain = false)
     {
         if ($lucid && $domain) {
             return __DIR__.'/../stubs/Lucid/DomainControllers/';

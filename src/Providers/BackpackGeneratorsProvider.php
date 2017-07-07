@@ -3,20 +3,20 @@
 namespace ZoutApps\LaravelBackpackAuth\Providers;
 
 
-use ZoutApps\LaravelBackpackAuth\Generators\ControllersGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\BackpackRouteFileGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\MigrationsGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\ModelGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\NotificationGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\RoleModelGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\RouteFileGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\ScopeGenerator;
 use ZoutApps\LaravelBackpackAuth\Generators\ViewsGenerator;
 
-class GeneratorsProvider
+class BackpackGeneratorsProvider extends GeneratorsProvider
 {
     /**
-     * @var \ZoutApps\LaravelBackpackAuth\Generators\ControllersGenerator
+     * @var \ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator
      */
     public $controllersGenerator;
     /**
@@ -40,7 +40,7 @@ class GeneratorsProvider
      */
     public $roleModelGenerator;
     /**
-     * @var \ZoutApps\LaravelBackpackAuth\Generators\RouteFileGenerator
+     * @var \ZoutApps\LaravelBackpackAuth\Generators\BackpackRouteFileGenerator
      */
     public $routeFileGenerator;
     /**
@@ -54,13 +54,13 @@ class GeneratorsProvider
     public $scopeGenerator;
 
     function __construct(
-        ControllersGenerator $controllersGenerator,
+        BackpackControllersGenerator $controllersGenerator,
         MiddlewaresGenerator $middlewaresGenerator,
         MigrationsGenerator $migrationsGenerator,
         ModelGenerator $modelGenerator,
         NotificationGenerator $notificationGenerator,
         RoleModelGenerator $roleModelGenerator,
-        RouteFileGenerator $routeFileGenerator,
+        BackpackRouteFileGenerator $routeFileGenerator,
         ViewsGenerator $viewsGenerator,
         ScopeGenerator $scopeGenerator
     ) {
