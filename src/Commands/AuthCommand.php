@@ -88,6 +88,9 @@ abstract class AuthCommand extends Command
     protected function checkInput(): bool
     {
         if (!$this->option('force')) {
+            if(!$this->confirm('This command will generate new files, overwrite and append existing ones. Do you want to proceed?')) {
+                return false;
+            }
             $this->info('--force omitted. Will ask for overwrite of existing files.');
         }
 
