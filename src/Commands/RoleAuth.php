@@ -34,7 +34,6 @@ class RoleAuth extends AuthCommand
         $name = $this->argument('name');
         $role = $this->argument('role');
         $domain = $this->option('domain');
-        //$lucid = false; //$this->option('lucid');
         $force = $this->option('force');
 
         $this->injectors->authInjector->injectAuth($name, $force);

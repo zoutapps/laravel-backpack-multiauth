@@ -80,12 +80,14 @@ abstract class AuthCommand extends Command
             $this->comment('exiting');
             return false;
         }
+        return true;
     }
 
     protected function checkInput(): bool
     {
         if (!$this->option('force')) {
             $this->info('--force omitted. Will not overwrite existing files.');
+            $this->error('At the moment you must provide te --force flag in order to generate anything.');
         }
 
         if (in_array('lucid', $this->options)) {
