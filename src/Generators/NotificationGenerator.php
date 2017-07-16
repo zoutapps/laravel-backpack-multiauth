@@ -36,9 +36,9 @@ class NotificationGenerator extends Generator
     private function getPath(string $name, bool $lucid)
     {
         if ($lucid) {
-            return '/src/Domains/Notifications/'.ucfirst($name).'ResetPassword.php';
+            return '/src/Domains/Notifications/'.ucfirst($name);
         } else {
-            return '/app/Notifications/'.ucfirst($name).'ResetPassword.php';
+            return '/app/Notifications/'.ucfirst($name);
         }
     }
 }
