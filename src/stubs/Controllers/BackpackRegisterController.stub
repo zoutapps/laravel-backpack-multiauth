@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\{{singularClass}}\Auth;
 
-use App{{modelSub}}\{{singularClass}};
+use App\{{modelSub}}\{{singularClass}};
 use Backpack\Base\app\Http\Controllers\Auth\RegisterController as OriginalController;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +42,7 @@ class RegisterController extends OriginalController
      */
     protected function validator(array $data)
     {
-        $user = new use {{singularClass}}();
+        $user = new {{singularClass}}();
         $users_table = $user->getTable();
 
         return Validator::make($data, [
@@ -61,7 +61,7 @@ class RegisterController extends OriginalController
       */
     protected function create(array $data)
     {
-        $user = new use {{singularClass}}();
+        $user = new {{singularClass}}();
         return $user->create([
             'name'     => $data['name'],
             'email'    => $data['email'],
