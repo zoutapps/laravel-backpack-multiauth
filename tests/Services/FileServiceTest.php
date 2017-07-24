@@ -1,9 +1,10 @@
 <?php
 
-namespace ZoutApps\LaravelBackpackAuth\Test;
+namespace ZoutApps\LaravelBackpackAuth\Test\Services;
 
 use Illuminate\Filesystem\Filesystem;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
+use ZoutApps\LaravelBackpackAuth\Test\TestCase;
 
 class FileServiceTest extends TestCase
 {
