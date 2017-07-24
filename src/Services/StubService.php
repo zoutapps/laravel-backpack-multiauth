@@ -91,6 +91,8 @@ class StubService
         }
 
         $replace = ltrim(rtrim($modelSub, '/'), '/');
+        $replace = ltrim(rtrim($replace, '\\'), '\\');
+        $replace = '\\'.$replace;
 
         return str_replace($this->modelSubKey, $replace, $subject);
     }
