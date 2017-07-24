@@ -24,7 +24,7 @@ class FileService
         }
 
         if ($cmd == null) {
-            return false;
+            return true;
         }
 
         $question = $question ?? 'Do you want to overwrite it?';
