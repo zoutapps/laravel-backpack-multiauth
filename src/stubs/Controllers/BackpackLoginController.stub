@@ -5,7 +5,7 @@ namespace App\Http\Controllers\{{singularClass}}\Auth;
 use Backpack\Base\app\Http\Controllers\Auth\LoginController as OriginalLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use ZoutApps\LaravelBackpackMultiAuth\Traits\LogsoutGuard;
+use ZoutApps\LaravelBackpackAuth\Traits\LogsoutGuard;
 
 class LoginController extends OriginalLoginController
 {
