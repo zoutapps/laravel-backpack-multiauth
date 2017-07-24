@@ -43,7 +43,9 @@ The package installs:
 
 ### Step 1: Install Through Composer
 
-`composer require zoutapps/laravel-backpack-multiauth --dev`
+As this package is currently only in beta and so there is no stable version you need to add
+
+`"zoutapps/laravel-backpack-multiauth": "dev-master"` to the `require-dev` section of your `composer.json` and perform `composer update`
 
 ### Step 2: Add the Service Provider
 
