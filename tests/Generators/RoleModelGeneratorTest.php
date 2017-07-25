@@ -3,10 +3,10 @@
 namespace ZoutApps\LaravelBackpackAuth\Test\Generators;
 
 use Illuminate\Filesystem\Filesystem;
-use ZoutApps\LaravelBackpackAuth\Generators\RoleModelGenerator;
-use ZoutApps\LaravelBackpackAuth\Generators\ScopeGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
+use ZoutApps\LaravelBackpackAuth\Generators\ScopeGenerator;
+use ZoutApps\LaravelBackpackAuth\Generators\RoleModelGenerator;
 
 class RoleModelGeneratorTest extends ModelGeneratorTest
 {

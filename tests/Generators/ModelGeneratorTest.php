@@ -3,13 +3,12 @@
 namespace ZoutApps\LaravelBackpackAuth\Test\Generators;
 
 use Illuminate\Filesystem\Filesystem;
-use ZoutApps\LaravelBackpackAuth\Generators\ModelGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
+use ZoutApps\LaravelBackpackAuth\Generators\ModelGenerator;
 
 class ModelGeneratorTest extends GeneratorsTest
 {
-
     /**
      * @var ModelGenerator
      */

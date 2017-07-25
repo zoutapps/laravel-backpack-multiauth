@@ -2,12 +2,11 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Test;
 
-use \Illuminate\Foundation\Testing\TestCase;
+use Illuminate\Foundation\Testing\TestCase;
 use ZoutApps\LaravelBackpackAuth\AuthServiceProvider;
 
-abstract class LaravelTest extends  TestCase
+abstract class LaravelTest extends TestCase
 {
-
     public function createApplication()
     {
         $app = require __DIR__.'/../vendor/laravel/laravel/bootstrap/app.php';
