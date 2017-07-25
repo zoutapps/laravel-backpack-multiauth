@@ -6,12 +6,9 @@ use Illuminate\Filesystem\Filesystem;
 use ZoutApps\LaravelBackpackAuth\Generators\ModelGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
-use ZoutApps\LaravelBackpackAuth\Test\LaravelTest;
 
-class ModelGeneratorTest extends LaravelTest
+class ModelGeneratorTest extends GeneratorsTest
 {
-
-    protected $generatedFiles = [];
 
     /**
      * @var ModelGenerator
@@ -23,15 +20,6 @@ class ModelGeneratorTest extends LaravelTest
         parent::setUp();
 
         $this->modelGenerator = new ModelGenerator(new FileService(new Filesystem()), new StubService());
-    }
-
-
-    public function tearDown()
-    {
-        parent::tearDown();
-
-        $filesystem = new Filesystem();
-        $filesystem->delete($this->generatedFiles);
     }
 
     public function test_generate_basic_model_without_sub()
