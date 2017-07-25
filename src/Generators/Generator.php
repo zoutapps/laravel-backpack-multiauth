@@ -54,11 +54,11 @@ abstract class Generator
         return $this->stubService->replaceModelNamespace($content);
     }
 
-    protected function generateFiles(string $name, string $path, array $stubs, bool $force, string $service = null)
+    protected function generateFiles(string $name, string $path, array $stubs, bool $force, string $service = null): bool
     {
         $state = true;
         foreach ($stubs as $stub) {
-            $state &= $this->generateFile($name, $path, $stub, $force, $service);
+            $state = $state && $this->generateFile($name, $path, $stub, $force, $service);
         }
 
         return $state;
