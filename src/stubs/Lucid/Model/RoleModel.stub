@@ -3,7 +3,7 @@
 namespace App\Data{{modelSub}};
 
 use App\Scopes\{{singularClass}}Scope;
-use ZoutApps\LaravelBackpackMultiAuth\Traits\OverridesRolesAndPermissionsRelations;
+use ZoutApps\LaravelBackpackAuth\Traits\OverridesRolesAndPermissionsRelations;
 
 class {{singularClass}} extends User
 {
