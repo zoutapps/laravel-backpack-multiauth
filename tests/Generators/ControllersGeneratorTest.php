@@ -13,6 +13,13 @@ class ControllersGeneratorTest extends GeneratorsTest
      */
     protected $controllersGenerator;
 
+    protected $controllers = [
+        'LoginController',
+        'RegisterController',
+        'ForgotPasswordController',
+        'ResetPasswordController',
+    ];
+
     public function setUp()
     {
         parent::setUp();
@@ -22,12 +29,7 @@ class ControllersGeneratorTest extends GeneratorsTest
 
     public function test_generate_controllers()
     {
-        $controllers = collect([
-            'LoginController',
-            'RegisterController',
-            'ForgotPasswordController',
-            'ResetPasswordController',
-        ]);
+        $controllers = collect($this->controllers);
 
         $controllers->each(function ($controller) {
             if (file_exists(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'))) {
@@ -50,12 +52,7 @@ class ControllersGeneratorTest extends GeneratorsTest
 
     public function test_generate_controllers_not_overwriting_if_present_and_not_forced()
     {
-        $controllers = collect([
-            'LoginController',
-            'RegisterController',
-            'ForgotPasswordController',
-            'ResetPasswordController',
-        ]);
+        $controllers = collect($this->controllers);
 
         $controllers->each(function ($controller) {
             file_put_contents(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'), $controller);
@@ -73,12 +70,7 @@ class ControllersGeneratorTest extends GeneratorsTest
 
     public function test_generate_controllers_overwrites_if_present_and_forced()
     {
-        $controllers = collect([
-            'LoginController',
-            'RegisterController',
-            'ForgotPasswordController',
-            'ResetPasswordController',
-        ]);
+        $controllers = collect($this->controllers);
 
         $controllers->each(function ($controller) {
             file_put_contents(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'), $controller);
