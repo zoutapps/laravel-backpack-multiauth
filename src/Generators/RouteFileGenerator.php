@@ -32,6 +32,6 @@ class RouteFileGenerator extends Generator
         $name = $this->normalize($name);
         $path = $this->getPath($name, $lucid, $service);
         $stub = $this->stubPath($lucid);
-        $this->generateFile($name, $path, new SplFileInfo($stub), $force);
+        return $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 }
