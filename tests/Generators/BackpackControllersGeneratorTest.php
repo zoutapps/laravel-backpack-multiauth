@@ -16,6 +16,13 @@ class BackpackControllersGeneratorTest extends ControllersGeneratorTest
         $this->controllersGenerator = new BackpackControllersGenerator(new FileService($this->filesystem), new StubService());
     }
 
+    public function tearDown()
+    {
+        parent::tearDown();
+
+        $this->filesystem->deleteDirectory(base_path('/app/Http/Controllers/FooBar'));
+    }
+
     public function test_generate_controllers()
     {
         if (file_exists(base_path('/app/Http/Controllers/FooBar/AdminController.php'))) {
@@ -34,9 +41,11 @@ class BackpackControllersGeneratorTest extends ControllersGeneratorTest
 
     public function test_generate_controllers_not_overwriting_if_present_and_not_forced()
     {
-        file_put_contents(base_path('/app/Http/Controllers/FooBar/AdminController.php'), 'AdminController');
-        $this->assertFileExists(base_path('/app/Http/Controllers/FooBar/AdminController.php'));
-        $this->generatedFiles[] = base_path('/app/Http/Controllers/FooBar/AdminController.php');
+        $path = base_path('/app/Http/Controllers/FooBar/');
+        $this->filesystem->makeDirectory($path,  0755, true);
+        $this->filesystem->put($path.'AdminController.php', 'AdminController');
+        $this->assertFileExists($path.'AdminController.php');
+        $this->generatedFiles[] = $path.'AdminController.php';
 
         parent::test_generate_controllers_not_overwriting_if_present_and_not_forced();
 
@@ -45,9 +54,11 @@ class BackpackControllersGeneratorTest extends ControllersGeneratorTest
 
     public function test_generate_controllers_overwrites_if_present_and_forced()
     {
-        file_put_contents(base_path('/app/Http/Controllers/FooBar/AdminController.php'), 'AdminController');
-        $this->assertFileExists(base_path('/app/Http/Controllers/FooBar/AdminController.php'));
-        $this->generatedFiles[] = base_path('/app/Http/Controllers/FooBar/AdminController.php');
+        $path = base_path('/app/Http/Controllers/FooBar/');
+        $this->filesystem->makeDirectory($path,  0755, true);
+        $this->filesystem->put($path.'AdminController.php', 'AdminController');
+        $this->assertFileExists($path.'AdminController.php');
+        $this->generatedFiles[] = $path.'AdminController.php';
 
         parent::test_generate_controllers_overwrites_if_present_and_forced();
 

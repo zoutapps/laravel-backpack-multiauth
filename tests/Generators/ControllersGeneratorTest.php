@@ -27,6 +27,12 @@ class ControllersGeneratorTest extends GeneratorsTest
         $this->controllersGenerator = new ControllersGenerator(new FileService($this->filesystem), new StubService());
     }
 
+    public function tearDown()
+    {
+        parent::tearDown();
+        $this->filesystem->deleteDirectory(base_path('/app/Http/Controllers/FooBar/Auth/'));
+    }
+
     public function test_generate_controllers()
     {
         $controllers = collect($this->controllers);
@@ -53,11 +59,13 @@ class ControllersGeneratorTest extends GeneratorsTest
     public function test_generate_controllers_not_overwriting_if_present_and_not_forced()
     {
         $controllers = collect($this->controllers);
+        $path = base_path('/app/Http/Controllers/FooBar/Auth/');
+        $this->filesystem->makeDirectory($path, 0755, true);
 
-        $controllers->each(function ($controller) {
-            file_put_contents(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'), $controller);
-            $this->assertFileExists(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'));
-            $this->generatedFiles[] = base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php');
+        $controllers->each(function ($controller) use ($path){
+            $this->filesystem->put($path.$controller.'.php', $controller);
+            $this->assertFileExists($path.$controller.'.php');
+            $this->generatedFiles[] = $path.$controller.'.php';
         });
 
         $created = $this->controllersGenerator->generateControllers('FooBar', false);
@@ -71,11 +79,13 @@ class ControllersGeneratorTest extends GeneratorsTest
     public function test_generate_controllers_overwrites_if_present_and_forced()
     {
         $controllers = collect($this->controllers);
+        $path = base_path('/app/Http/Controllers/FooBar/Auth/');
+        $this->filesystem->makeDirectory($path, 0755, true);
 
-        $controllers->each(function ($controller) {
-            file_put_contents(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'), $controller);
-            $this->assertFileExists(base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php'));
-            $this->generatedFiles[] = base_path('/app/Http/Controllers/FooBar/Auth/'.$controller.'.php');
+        $controllers->each(function ($controller) use ($path) {
+            $this->filesystem->put($path . $controller . '.php', $controller);
+            $this->assertFileExists($path . $controller . '.php');
+            $this->generatedFiles[] = $path . $controller . '.php';
         });
 
         $created = $this->controllersGenerator->generateControllers('FooBar', true);
