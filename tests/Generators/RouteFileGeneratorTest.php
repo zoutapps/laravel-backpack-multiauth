@@ -23,15 +23,16 @@ class RouteFileGeneratorTest extends GeneratorsTest
 
     public function test_generate_route_file()
     {
-        if (file_exists(base_path('/routes/fooBar.php'))) {
-            unlink(base_path('/routes/fooBar.php'));
+        $path = base_path('routes/fooBar.php');
+        if (file_exists($path)) {
+            unlink($path);
         }
 
         $created = $this->routeFileGenerator->generateRoutesFile('FooBar', false);
         $this->assertTrue($created);
 
-        $this->assertFileExists(base_path('/routes/fooBar.php'));
-        $this->generatedFiles[] = base_path('/routes/fooBar.php');
+        $this->assertFileExists($path);
+        $this->generatedFiles[] = $path;
     }
 
     public function test_generate_route_file_not_overwriting_if_present_and_not_forced()
@@ -39,7 +40,7 @@ class RouteFileGeneratorTest extends GeneratorsTest
         $path = base_path('/routes/fooBar.php');
         $this->filesystem->put($path, 'foobar');
         $this->assertFileExists($path);
-        $this->generatedFiles[] = '/routes/fooBar.php';
+        $this->generatedFiles[] = $path;
 
         $created = $this->routeFileGenerator->generateRoutesFile('FooBar', false);
         $this->assertFalse($created);
@@ -51,7 +52,7 @@ class RouteFileGeneratorTest extends GeneratorsTest
         $path = base_path('/routes/fooBar.php');
         $this->filesystem->put($path, 'foobar');
         $this->assertFileExists($path);
-        $this->generatedFiles[] = '/routes/fooBar.php';
+        $this->generatedFiles[] = $path;
 
         $created = $this->routeFileGenerator->generateRoutesFile('FooBar', true);
         $this->assertTrue($created);
