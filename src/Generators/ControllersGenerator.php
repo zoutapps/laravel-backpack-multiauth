@@ -26,6 +26,7 @@ class ControllersGenerator extends Generator
         $service = $this->normalize($service);
         $path = $this->getPath($name, $lucid, $service);
         $stubs = $this->getStubs($lucid, $domain);
+
         return $this->generateFiles($name, $path, $stubs, $force);
     }
 

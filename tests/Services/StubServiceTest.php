@@ -2,8 +2,8 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Test\Services;
 
-use ZoutApps\LaravelBackpackAuth\Services\StubService;
 use ZoutApps\LaravelBackpackAuth\Test\LaravelTest;
+use ZoutApps\LaravelBackpackAuth\Services\StubService;
 
 class StubServiceTest extends LaravelTest
 {
@@ -19,7 +19,7 @@ class StubServiceTest extends LaravelTest
         $this->stubService = new StubService();
     }
 
-    function test_replace()
+    public function test_replace()
     {
         $keys = collect([
             '{{singularCamel}}',
@@ -38,31 +38,31 @@ class StubServiceTest extends LaravelTest
             'fooBarBaz',
             'FooBarBaz',
             'fooBarBazs',
-            'FooBarBazs'
+            'FooBarBazs',
         ]);
 
-        $testings->each(function($input) use ($subject, $expected) {
+        $testings->each(function ($input) use ($subject, $expected) {
             $replaced = $this->stubService->replace($input, $subject);
             $this->assertSame($expected, $replaced, 'Input of '.$input.' failed');
         });
     }
 
-    function test_replace_class()
+    public function test_replace_class()
     {
         $subject = '{{Class}}';
 
         $testings = collect([
-            "thisIsAName",
-            "ThisIsAName",
+            'thisIsAName',
+            'ThisIsAName',
             "thisIsAName\n",
         ]);
-        $testings->each(function($name) use ($subject) {
+        $testings->each(function ($name) use ($subject) {
             $replaced = $this->stubService->replaceClass($name, $subject);
             $this->assertSame('ThisIsAName', $replaced);
         });
     }
 
-    function test_replace_model_namespace()
+    public function test_replace_model_namespace()
     {
         $subject = '\App\Something{{modelSub}};';
         $testings = collect([
@@ -78,21 +78,21 @@ class StubServiceTest extends LaravelTest
 
         ]);
 
-        $testings->each(function($expected, $sub) use ($subject) {
+        $testings->each(function ($expected, $sub) use ($subject) {
             $this->app['config']->set('zoutapps.multiauth.model_path', $sub);
             $replaced = $this->stubService->replaceModelNamespace($subject);
             $this->assertSame($expected, $replaced, 'Input of '.$sub.' should result in '.$expected);
         });
     }
 
-    function test_replace_exact()
+    public function test_replace_exact()
     {
         $subject = 'Foo{{key}}Baz';
         $replaced = $this->stubService->replaceExact('Bar', $subject, 'key');
         $this->assertSame('FooBarBaz', $replaced);
     }
 
-    function test_replace_custom()
+    public function test_replace_custom()
     {
         $keys = collect([
             '{{singularCamelSomeKey}}',
@@ -111,10 +111,10 @@ class StubServiceTest extends LaravelTest
             'fooBarBaz',
             'FooBarBaz',
             'fooBarBazs',
-            'FooBarBazs'
+            'FooBarBazs',
         ]);
 
-        $testings->each(function($input) use ($subject, $expected) {
+        $testings->each(function ($input) use ($subject, $expected) {
             $replaced = $this->stubService->replaceCustom($input, $subject, 'SomeKey');
             $this->assertSame($expected, $replaced, 'Input of '.$input.' failed');
         });

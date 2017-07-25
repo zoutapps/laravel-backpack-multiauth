@@ -3,12 +3,11 @@
 namespace ZoutApps\LaravelBackpackAuth\Test\Services;
 
 use Illuminate\Filesystem\Filesystem;
-use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Test\LaravelTest;
+use ZoutApps\LaravelBackpackAuth\Services\FileService;
 
 class FileServiceTest extends LaravelTest
 {
-
     /**
      * @var Filesystem
      */
@@ -25,13 +24,13 @@ class FileServiceTest extends LaravelTest
     {
         parent::setUp();
 
-        $this->filesystem  = new Filesystem();
+        $this->filesystem = new Filesystem();
         $this->fileService = new FileService(new Filesystem());
-        if(!is_dir($this->dir)) {
-            $this->filesystem->makeDirectory($this->dir,0777,true);
+        if (! is_dir($this->dir)) {
+            $this->filesystem->makeDirectory($this->dir, 0777, true);
         }
-        if(!is_dir($this->tempDir)) {
-            $this->filesystem->makeDirectory($this->tempDir,0777,true);
+        if (! is_dir($this->tempDir)) {
+            $this->filesystem->makeDirectory($this->tempDir, 0777, true);
         }
     }
 
@@ -44,11 +43,11 @@ class FileServiceTest extends LaravelTest
 
     // put files
 
-    function test_put_file_will_create_file_in_specified_path()
+    public function test_put_file_will_create_file_in_specified_path()
     {
         $paths = [
             $this->tempDir.'temp.txt',
-            $this->tempDir.'/subdir/sub/temp.txt'
+            $this->tempDir.'/subdir/sub/temp.txt',
         ];
         foreach ($paths as $path) {
             $this->fileService->putFile($path, '', false);
@@ -56,8 +55,7 @@ class FileServiceTest extends LaravelTest
         }
     }
 
-
-    function test_put_file_will_not_overwrite_if_not_forced()
+    public function test_put_file_will_not_overwrite_if_not_forced()
     {
         $path = $this->tempDir.'existing.txt';
         $this->filesystem->put($path, 'original content');
@@ -68,7 +66,7 @@ class FileServiceTest extends LaravelTest
         $this->assertStringEqualsFile($path, 'original content');
     }
 
-    function test_put_file_will_overwrite_if_forced()
+    public function test_put_file_will_overwrite_if_forced()
     {
         $path = $this->tempDir.'/overwrite.txt';
         $this->filesystem->put($path, 'original content');
@@ -112,7 +110,6 @@ class FileServiceTest extends LaravelTest
         $this->assertFalse($this->fileService->contentExists($notexistspath, 'foo'));
     }
 
-
     public function test_all_files_finds_files()
     {
         file_put_contents($this->tempDir.'/foo.txt', 'foo');
@@ -124,5 +121,4 @@ class FileServiceTest extends LaravelTest
         $this->assertContains('foo.txt', $allFiles);
         $this->assertContains('bar.txt', $allFiles);
     }
-
 }
