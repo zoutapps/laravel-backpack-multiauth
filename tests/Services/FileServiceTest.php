@@ -18,21 +18,26 @@ class FileServiceTest extends TestCase
      */
     protected $fileService;
 
-    protected $tempDir = 'tests/files/temp/';
-    protected $dir = 'tests/files/';
+    protected $tempDir = __DIR__.'/../files/temp/';
+    protected $dir = __DIR__.'/../files/';
 
     public function setUp()
     {
         parent::setUp();
+
         $this->filesystem  = new Filesystem();
-        $this->fileService = new FileService(new Filesystem());;
+        $this->fileService = new FileService(new Filesystem());
+        if(!is_dir($this->dir)) {
+            $this->filesystem->makeDirectory($this->dir,0777,true);
+        }
         if(!is_dir($this->tempDir)) {
-            $this->filesystem->makeDirectory($this->tempDir);
+            $this->filesystem->makeDirectory($this->tempDir,0777,true);
         }
     }
 
     protected function tearDown()
     {
+        $this->filesystem->deleteDirectory($this->dir);
         $this->filesystem->deleteDirectory($this->tempDir);
         parent::tearDown();
     }
