@@ -3,9 +3,9 @@
 namespace ZoutApps\LaravelBackpackAuth\Test\Services;
 
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
-use ZoutApps\LaravelBackpackAuth\Test\TestCase;
+use ZoutApps\LaravelBackpackAuth\Test\LaravelTest;
 
-class StubServiceTest extends TestCase
+class StubServiceTest extends LaravelTest
 {
     /**
      * @var StubService

@@ -4,9 +4,9 @@ namespace ZoutApps\LaravelBackpackAuth\Test\Services;
 
 use Illuminate\Filesystem\Filesystem;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
-use ZoutApps\LaravelBackpackAuth\Test\TestCase;
+use ZoutApps\LaravelBackpackAuth\Test\LaravelTest;
 
-class FileServiceTest extends TestCase
+class FileServiceTest extends LaravelTest
 {
 
     /**
