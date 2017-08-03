@@ -3,22 +3,20 @@
 namespace App{{modelSub}};
 
 use App\Scopes\{{singularClass}}Scope;
-use ZoutApps\LaravelBackpackAuth\Traits\OverridesRolesAndPermissionsRelations;
 
 class {{singularClass}} extends User
 {
-    use OverridesRolesAndPermissionsRelations;
 
     protected $table = 'users';
 
     public static function boot()
     {
+        parent::boot();
         static::addGlobalScope(new {{singularClass}}Scope());
     }
 
-    public function __construct(array $attributes = [])
+    public function getMorphClass()
     {
-        $this->table = config('laravel-permission.table_names.users');
-        parent::__construct($attributes);
+        return User::class;
     }
 }
