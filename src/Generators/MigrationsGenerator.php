@@ -12,9 +12,9 @@ class MigrationsGenerator extends Generator
     public function generateMigrations(string $name, bool $force)
     {
         $name = $this->normalize($name);
-        $path = base_path().'/database/migrations';
+        $path = base_path().'/database/migrations/';
         $stubs = $this->getStubs();
-        $this->generateFiles($name, $path, $stubs, $force);
+        return $this->generateFiles($name, $path, $stubs, $force);
     }
 
     protected function generateFile(string $name, string $path, SplFileInfo $stub, bool $force, string $service = null)
