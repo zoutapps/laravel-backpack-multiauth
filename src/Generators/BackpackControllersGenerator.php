@@ -17,6 +17,7 @@ class BackpackControllersGenerator extends ControllersGenerator
 
         $path = '/app/Http/Controllers/'.ucfirst($name).'/';
         $stub = $this->getPathPrefix($lucid, $domain).'AdminController.stub';
+
         return $state && $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 

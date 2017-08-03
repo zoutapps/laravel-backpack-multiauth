@@ -62,7 +62,7 @@ class ControllersGeneratorTest extends GeneratorsTest
         $path = base_path('/app/Http/Controllers/FooBar/Auth/');
         $this->filesystem->makeDirectory($path, 0755, true);
 
-        $controllers->each(function ($controller) use ($path){
+        $controllers->each(function ($controller) use ($path) {
             $this->filesystem->put($path.$controller.'.php', $controller);
             $this->assertFileExists($path.$controller.'.php');
             $this->generatedFiles[] = $path.$controller.'.php';
@@ -83,9 +83,9 @@ class ControllersGeneratorTest extends GeneratorsTest
         $this->filesystem->makeDirectory($path, 0755, true);
 
         $controllers->each(function ($controller) use ($path) {
-            $this->filesystem->put($path . $controller . '.php', $controller);
-            $this->assertFileExists($path . $controller . '.php');
-            $this->generatedFiles[] = $path . $controller . '.php';
+            $this->filesystem->put($path.$controller.'.php', $controller);
+            $this->assertFileExists($path.$controller.'.php');
+            $this->generatedFiles[] = $path.$controller.'.php';
         });
 
         $created = $this->controllersGenerator->generateControllers('FooBar', true);

@@ -2,13 +2,12 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Test\Generators;
 
-use ZoutApps\LaravelBackpackAuth\Generators\RouteFileGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
+use ZoutApps\LaravelBackpackAuth\Generators\RouteFileGenerator;
 
 class RouteFileGeneratorTest extends GeneratorsTest
 {
-
     /**
      * @var RouteFileGenerator
      */

@@ -33,6 +33,7 @@ class MiddlewaresGenerator extends Generator
         $service = $this->normalize($service);
         $path = $this->getPath($lucid, $service).ucfirst($name);
         $stubs = $this->getStubs($lucid, $domain);
+
         return $this->generateFiles($name, $path, $stubs, $force);
     }
 

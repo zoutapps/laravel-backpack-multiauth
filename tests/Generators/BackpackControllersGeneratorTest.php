@@ -2,13 +2,12 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Test\Generators;
 
-use ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
+use ZoutApps\LaravelBackpackAuth\Generators\BackpackControllersGenerator;
 
 class BackpackControllersGeneratorTest extends ControllersGeneratorTest
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -42,7 +41,7 @@ class BackpackControllersGeneratorTest extends ControllersGeneratorTest
     public function test_generate_controllers_not_overwriting_if_present_and_not_forced()
     {
         $path = base_path('/app/Http/Controllers/FooBar/');
-        $this->filesystem->makeDirectory($path,  0755, true);
+        $this->filesystem->makeDirectory($path, 0755, true);
         $this->filesystem->put($path.'AdminController.php', 'AdminController');
         $this->assertFileExists($path.'AdminController.php');
         $this->generatedFiles[] = $path.'AdminController.php';
@@ -55,7 +54,7 @@ class BackpackControllersGeneratorTest extends ControllersGeneratorTest
     public function test_generate_controllers_overwrites_if_present_and_forced()
     {
         $path = base_path('/app/Http/Controllers/FooBar/');
-        $this->filesystem->makeDirectory($path,  0755, true);
+        $this->filesystem->makeDirectory($path, 0755, true);
         $this->filesystem->put($path.'AdminController.php', 'AdminController');
         $this->assertFileExists($path.'AdminController.php');
         $this->generatedFiles[] = $path.'AdminController.php';
@@ -66,6 +65,4 @@ class BackpackControllersGeneratorTest extends ControllersGeneratorTest
         $foobar = new $fqn();
         $this->assertInstanceOf($fqn, $foobar);
     }
-
-
 }

@@ -2,9 +2,9 @@
 
 namespace ZoutApps\LaravelBackpackAuth\Test\Generators;
 
-use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
+use ZoutApps\LaravelBackpackAuth\Generators\MiddlewaresGenerator;
 
 class MiddlewaresGeneratorTest extends GeneratorsTest
 {
@@ -15,7 +15,7 @@ class MiddlewaresGeneratorTest extends GeneratorsTest
 
     protected $middlewares = [
         'RedirectIf',
-        'RedirectIfNot'
+        'RedirectIfNot',
     ];
 
     public function setUp()
@@ -47,6 +47,4 @@ class MiddlewaresGeneratorTest extends GeneratorsTest
             $this->assertInstanceOf($fqn, $foobar);
         });
     }
-
-
 }
