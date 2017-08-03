@@ -67,6 +67,7 @@ abstract class Generator
     protected function generateFile(string $name, string $path, SplFileInfo $stub, bool $force, string $service = null)
     {
         $filePath = $this->filePath($path, $stub);
+
         $content = $this->compile($stub, $name, $service);
 
         return $this->fileService->putFile($filePath, $content, $force, $this->cmd);

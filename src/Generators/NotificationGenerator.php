@@ -9,11 +9,6 @@ class NotificationGenerator extends Generator
 {
     use CanNormalizeString;
 
-    protected function filePath($path, SplFileInfo $file = null)
-    {
-        return parent::filePath($path, $file).$file->getBasename('.stub').'.php';
-    }
-
     protected function stubPath(bool $lucid, bool $domain)
     {
         if ($lucid && $domain) {
@@ -30,15 +25,15 @@ class NotificationGenerator extends Generator
         $name = $this->normalize($name);
         $path = $this->getPath($name, $lucid);
         $stub = $this->stubPath($lucid, $domain);
-        $this->generateFile($name, $path, new SplFileInfo($stub), $force);
+        return $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 
     private function getPath(string $name, bool $lucid)
     {
         if ($lucid) {
-            return '/src/Domains/Notifications/'.ucfirst($name).'ResetPassword.php';
+            return '/src/Domains/Notifications/'.ucfirst($name).'ResetPasswordNotification.php';
         } else {
-            return '/app/Notifications/'.ucfirst($name).'ResetPassword.php';
+            return '/app/Notifications/'.ucfirst($name).'ResetPasswordNotification.php';
         }
     }
 }
