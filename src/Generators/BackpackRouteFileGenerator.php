@@ -11,6 +11,6 @@ class BackpackRouteFileGenerator extends RouteFileGenerator
 
     protected function getPath(string $name, bool $lucid, string $service = null)
     {
-        return '/routes/'.mb_strtolower($name).'.php';
+        return '/routes/'.$name.'.php';
     }
 }

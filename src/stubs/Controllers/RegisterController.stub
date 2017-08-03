@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\{{singularClass}}\Auth;
 
 use App{{modelSub}}\{{singularClass}};
-use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class RegisterController extends Controller
 {

@@ -21,7 +21,7 @@ class ViewsGenerator extends Generator
         }
 
         $name = $this->normalize($name);
-        $path = '/recources/views/'.$name.'/';
+        $path = '/resources/views/'.$name.'/';
         $views = __DIR__.'/../stubs/views';
 
         $viewStubs = $this->fileService->allFiles($views);

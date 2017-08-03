@@ -24,7 +24,7 @@ class FileService
         }
 
         if ($cmd == null) {
-            return false;
+            return true;
         }
 
         $question = $question ?? 'Do you want to overwrite it?';
@@ -54,7 +54,7 @@ class FileService
         $this->files->put($path, $content);
 
         if ($cmd != null) {
-            $cmd->comment('Wrote file: '.$this->relativePath($path), 'v');
+            $cmd->comment('Wrote to file: '.$this->relativePath($path), 'v');
         }
 
         return true;
@@ -95,32 +95,6 @@ class FileService
     public function getContent(string $path)
     {
         return $this->files->get($path);
-    }
-
-    /**
-     * Put given content in path.
-     *
-     * @param string $path
-     * @param string $content
-     * @param bool $force
-     * @param Command $cmd
-     * @return bool
-     */
-    public function putContent(string $path, string $content, bool $force, Command $cmd = null): bool
-    {
-        if ($this->shouldNotOverwriteIfExists($path, $force, $cmd, 'Do you want to replace the content?')) {
-            return false;
-        }
-
-        $this->makeDirectory($path);
-
-        $this->files->put($path, $content);
-
-        if ($cmd != null) {
-            $cmd->comment('Replaced content: '.$this->relativePath($path), 'v');
-        }
-
-        return true;
     }
 
     /**

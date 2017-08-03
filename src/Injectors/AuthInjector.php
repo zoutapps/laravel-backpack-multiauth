@@ -8,9 +8,6 @@ class AuthInjector extends Injector
 {
     use CanNormalizeString;
 
-    // arguments: name service
-    // options: force lucid domain
-
     public function injectAuth(string $name, bool $force, bool $lucid = false)
     {
         $name = $this->normalize($name);

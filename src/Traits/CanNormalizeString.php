@@ -10,6 +10,6 @@ trait CanNormalizeString
             return;
         }
 
-        return str_singular(trim($string));
+        return lcfirst(str_singular(trim($string)));
     }
 }

@@ -68,6 +68,6 @@ abstract class Injector
         $filePath = $this->filePath($path);
         $content = $this->compile($name, $path, $inject, $service);
 
-        return $this->fileService->putContent($filePath, $content, $force, $this->cmd);
+        return $this->fileService->putFile($filePath, $content, $force, $this->cmd);
     }
 }

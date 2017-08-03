@@ -13,23 +13,16 @@ class BackpackControllersGenerator extends ControllersGenerator
         bool $lucid = false,
         string $service = null
     ) {
-        parent::generateControllers($name, $force, $domain, $lucid, $service);
+        $state = parent::generateControllers($name, $force, $domain, $lucid, $service);
 
         $path = '/app/Http/Controllers/'.ucfirst($name).'/';
         $stub = $this->getPathPrefix($lucid, $domain).'AdminController.stub';
-        $this->generateFile($name, $path, new SplFileInfo($stub), $force);
-    }
 
-    protected function getStubPaths(bool $lucid, bool $domain = false)
-    {
-        $paths = parent::getStubPaths($lucid, $domain);
-        $paths[] = $this->getPathPrefix($lucid, $domain).'AdminController.stub';
-
-        return $paths;
+        return $state && $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 
     protected function getPathPrefix(bool $lucid, bool $domain = false)
     {
-        return parent::getPathPrefix($lucid, $domain).'Backpack';
+        return parent::getPathPrefix($lucid, $domain).'Backpack/';
     }
 }
