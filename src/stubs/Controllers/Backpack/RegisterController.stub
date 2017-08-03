@@ -5,6 +5,7 @@ namespace App\Http\Controllers\{{singularClass}}\Auth;
 use App{{modelSub}}\{{singularClass}};
 use Backpack\Base\app\Http\Controllers\Auth\RegisterController as OriginalController;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class RegisterController extends OriginalController
 {
