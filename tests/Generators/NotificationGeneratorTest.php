@@ -3,9 +3,9 @@
 namespace ZoutApps\LaravelBackpackAuth\Test\Generators;
 
 use Illuminate\Filesystem\Filesystem;
-use ZoutApps\LaravelBackpackAuth\Generators\NotificationGenerator;
 use ZoutApps\LaravelBackpackAuth\Services\FileService;
 use ZoutApps\LaravelBackpackAuth\Services\StubService;
+use ZoutApps\LaravelBackpackAuth\Generators\NotificationGenerator;
 
 class NotificationGeneratorTest extends GeneratorsTest
 {
@@ -24,7 +24,7 @@ class NotificationGeneratorTest extends GeneratorsTest
     public function test_generate_notification()
     {
         $path = base_path('app/Notifications/FooBarResetPasswordNotification.php');
-        if(file_exists($path)) {
+        if (file_exists($path)) {
             unlink($path);
         }
 

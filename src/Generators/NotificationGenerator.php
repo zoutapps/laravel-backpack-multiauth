@@ -25,6 +25,7 @@ class NotificationGenerator extends Generator
         $name = $this->normalize($name);
         $path = $this->getPath($name, $lucid);
         $stub = $this->stubPath($lucid, $domain);
+
         return $this->generateFile($name, $path, new SplFileInfo($stub), $force);
     }
 

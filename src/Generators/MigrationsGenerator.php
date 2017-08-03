@@ -14,6 +14,7 @@ class MigrationsGenerator extends Generator
         $name = $this->normalize($name);
         $path = base_path().'/database/migrations/';
         $stubs = $this->getStubs();
+
         return $this->generateFiles($name, $path, $stubs, $force);
     }
 
