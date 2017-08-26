@@ -2,7 +2,7 @@
 
 namespace App{{modelSub}};
 
-use App\Notifications\{{singularClass}}ResetPassword;
+use App\Notifications\{{singularClass}}ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
