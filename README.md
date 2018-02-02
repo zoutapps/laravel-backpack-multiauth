@@ -1,4 +1,4 @@
-# Zout Apps Laravel-Backpack-Multiauth
+# Laravel-Backpack-Multiauth
 
 [![StyleCI](https://styleci.io/repos/95968915/shield)](https://styleci.io/repos/95968915)
 [![Build Status](https://travis-ci.org/zoutapps/laravel-backpack-multiauth.svg?branch=master)](https://travis-ci.org/zoutapps/laravel-backpack-multiauth)
