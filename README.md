@@ -1,3 +1,8 @@
+# Abandoned
+
+As backpack improved the way we can use auth guards, middlewares and so on, laravel-backpack-multiauth will not get any more updates.
+
+
 # Laravel-Backpack-Multiauth
 
 [![StyleCI](https://styleci.io/repos/95968915/shield)](https://styleci.io/repos/95968915)
